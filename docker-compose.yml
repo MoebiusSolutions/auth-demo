@@ -15,9 +15,35 @@ services:
       LDAP_DOMAIN: "example.com"
       LDAP_BASE_DN: "dc=example,dc=com"
       LDAP_ADMIN_PASSWORD: "password"
+    security_opt:
+      # Disable SElinux for volume mounts (since we're using a host mount)
+      - "label=disable"
+    volumes:
+      # Helper scripts
+      - "./ldap-init:/opt/ldap-init:ro"
     ports:
       - 127.0.0.1:1389:389
       - 127.0.0.1:1636:633
+    # We define a healthcheck so the container doing the init knows when LDAP is online
+    healthcheck:
+      test: ["CMD", "ldapwhoami", "-D", "cn=admin,dc=example,dc=com", "-w", "password", "-H", "ldap://127.0.0.1:389"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+      start_period: 5s
+
+  # TODO: Look for a native mechanism within the server to do this on startup
+  # (which should be faster than waiting for container to be ready)
+  ldap-init:
+    # Wait for LDAP to be online
+    depends_on:
+      ldap:
+        condition: service_healthy
+    image: osixia/openldap:latest
+    volumes:
+      # Helper scripts
+      - "./ldap-init:/opt/ldap-init:ro"
+    entrypoint: /opt/ldap-init/entrypoint-ldap-init.sh
 
   ldap-ui:
     image: osixia/phpldapadmin:latest
