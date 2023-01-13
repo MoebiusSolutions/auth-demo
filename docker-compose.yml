@@ -1,0 +1,47 @@
+version: '3'
+
+volumes:
+  # Crowd server stroage
+  crowd-data:
+  # Bitbucket server stroage
+  bitbucket-data:
+
+services:
+
+  ldap:
+    image: osixia/openldap:latest
+    environment:
+      LDAP_ORGANISATION: "Example Inc."
+      LDAP_DOMAIN: "example.com"
+      LDAP_BASE_DN: "dc=example,dc=com"
+      LDAP_ADMIN_PASSWORD: "password"
+    ports:
+      - 127.0.0.1:1389:389
+      - 127.0.0.1:1636:633
+
+  ldap-ui:
+    image: osixia/phpldapadmin:latest
+    ports:
+      - 127.0.0.1:8443:443
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: "ldap"
+
+  crowd:
+    image: atlassian/crowd:latest
+    environment:
+      CROWD_DB_URL: jdbc:postgresql://crowd-db:5432/crowd
+      CROWD_DB_USER: postgres
+      CROWD_DB_PASSWORD: password
+    volumes:
+      - crowd-data:/var/atlassian/application-data/crowd
+    ports:
+      - 127.0.0.1:8095:8095
+
+  bibucket:
+    image: atlassian/bitbucket:latest
+    volumes:
+      - bitbucket-data:/var/atlassian/application-data/bitbucket
+    ports:
+      - 127.0.0.1:7990:7990
+      - 127.0.0.1:7999:7999
+
