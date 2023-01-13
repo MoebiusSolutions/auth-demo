@@ -51,14 +51,14 @@ docker compose exec ldap \
 
 ## Adding Users/Groups (ldapadd)
 
-Given that we have the sample `.ldif` file [ldap-init.ldif](ldap-init.ldif)
+Given that we have the sample `.ldif` file [ldap-init.ldif](ldap/ldap-init.ldif)
 mounted into the ldap container, we can manually load it into the directory server with this:
 
 ```
 docker compose exec ldap \
     ldapadd \
         -D 'cn=admin,dc=example,dc=com' -w 'password' \
-        -f /opt/ldap-init/ldap-init.ldif
+        -H 'ldap://ldap:389' -f /opt/ldap-init/ldap-init.ldif
 ```
 
 ... but you will likely have to manually modify the contents of that particular `.ldif`,
