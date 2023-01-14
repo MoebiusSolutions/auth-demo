@@ -2,10 +2,10 @@
 
 ## Basic Cluster Start/Stop/Wipe
 
-We create/launch the continers with:
+We (re)start the continers with:
 
 ```
-bash start.sh
+bash restart.sh
 ```
 
 We stop the cluster (deleting the stateless containers, but leaving volumes intact) with:
@@ -22,6 +22,12 @@ bash wipe.sh
 
 **ATTENTION**: You may want to be careful not to wipe after you have licensed Atlassian products.
 I am not yet sure how easy it is to setup a new trial license if the server ID changes.
+
+We view the randomly generated passwords with:
+
+```
+bash show-secrets.sh
+```
 
 ## Setting Up Products
 

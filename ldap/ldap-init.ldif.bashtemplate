@@ -28,4 +28,4 @@ objectclass: top
 sn: Swanson
 uid: pswanson
 uidnumber: 1001
-userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
+userpassword: ${LDAP_PSWANSON_PASSWORD}

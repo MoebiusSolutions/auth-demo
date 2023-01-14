@@ -7,7 +7,7 @@ Open the LDAP UI at `https://127.0.0.1:8443/`
 Login:
 
 * User: `cn=admin,dc=example,dc=com`
-* Pass: `password`
+* Pass: (see output of `show-secrets.sh`)
 
 We have to have at least one group defined before we can create a user.
 To define a group:

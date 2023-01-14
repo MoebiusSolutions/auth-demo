@@ -1,5 +1,13 @@
 # Manual Actions in LDAP CLI
 
+## Getting Admin Password
+
+We can see the current admin password with this helper script:
+
+```
+bash show-secrets.sh
+```
+
 ## Connecting to LDAP
 
 We can hit the LDAP server from two places:
@@ -10,7 +18,7 @@ We can hit the LDAP server from two places:
 * From inside any container, as `ldap:389`
     * For example: `docker compose exec ldap ldapsearch -x -b 'dc=example,dc=com' -H 'ldap://ldap:389'`
 
-Anonymous authentication is enabled, so we can list contents without credentials:
+Anonymous authentication is partially enabled, so we can connect without credentials:
 
 ```
 docker compose exec ldap \
@@ -19,7 +27,7 @@ docker compose exec ldap \
 
 ```
 
-... or with default credentials:
+... or with credentials (replacing `password` with the real password):
 
 ```
 docker compose exec ldap \
@@ -51,14 +59,14 @@ docker compose exec ldap \
 
 ## Adding Users/Groups (ldapadd)
 
-Given that we have the sample `.ldif` file [ldap-init.ldif](ldap/ldap-init.ldif)
+Given that we have the sample `.ldif` file [ldap-init.ldif.bashtemlpate](ldap/ldap-init.ldif.bashtemlpate)
 mounted into the ldap container, we can manually load it into the directory server with this:
 
 ```
 docker compose exec ldap \
     ldapadd \
         -D 'cn=admin,dc=example,dc=com' -w 'password' \
-        -H 'ldap://ldap:389' -f /opt/ldap-init/ldap-init.ldif
+        -H 'ldap://ldap:389' -f /opt/ldap-init/ldap-init.ldif.bashtemlpate
 ```
 
 ... but you will likely have to manually modify the contents of that particular `.ldif`,
