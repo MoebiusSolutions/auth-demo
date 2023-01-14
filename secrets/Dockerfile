@@ -1,9 +1,14 @@
 FROM ubuntu:latest
 
 RUN set -x && \
+    # NOTE: slapd install prompts for passwd without DEBIAN_FRONTEND setting
+    export DEBIAN_FRONTEND=noninteractiv && \
     apt -y update && \
-    # gettext provides envsubst
-    apt -y install gettext && \
+    apt -y install \
+        # Provides envsubst, which is used to replace environment variables in config files
+        gettext \
+        # Provides slappasswd, which is used for encoding ldap passwords
+        slapd && \
     rm -rf /var/lib/apt/lists/*
 
 ADD --chown=root:root entrypoint-secrets.sh /opt/secrets/

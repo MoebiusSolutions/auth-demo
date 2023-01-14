@@ -28,4 +28,6 @@ objectclass: top
 sn: Swanson
 uid: pswanson
 uidnumber: 1001
-userpassword: ${LDAP_PSWANSON_PASSWORD}
+# TODO: Notice that if you specify a password in plain text it will be stored in plain text (Base64 encoded).
+#       If you are using OpenLDAP consider to use the slappasswd command for generating hashed password.
+userpassword: ${LDAP_PSWANSON_PASSWORD_ENCODED}

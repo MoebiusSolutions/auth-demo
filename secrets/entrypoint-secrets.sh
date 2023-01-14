@@ -48,6 +48,7 @@ generate_password /secrets/ldap/pswanson_password
 
 export LDAP_ADMIN_PASSWORD="$(cat /secrets/ldap/admin_password | tr -d '\n')"
 export LDAP_PSWANSON_PASSWORD="$(cat /secrets/ldap/pswanson_password | tr -d '\n')"
+export LDAP_PSWANSON_PASSWORD_ENCODED="$(slappasswd -n -T /secrets/ldap/pswanson_password)"
 
 PW_FILE="/secrets/ldap/my-env.yaml"
 echo "[ Generating ]: $PW_FILE" 1>&2

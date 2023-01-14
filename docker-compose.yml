@@ -26,14 +26,15 @@ services:
       LDAP_ORGANISATION: "Example Inc."
       LDAP_DOMAIN: "example.com"
       LDAP_BASE_DN: "dc=example,dc=com"
-      LDAP_SEED_INTERNAL_LDIF_PATH: "/opt/ldap-init/ldap-init.ldif"
+      LDAP_SEED_INTERNAL_LDIF_PATH: "/secrets/ldap/ldap-init.ldif"
     security_opt:
       # Disable SElinux for volume mounts (since we're using a host mount)
       - "label=disable"
     volumes:
       - "./ldap:/opt/ldap-init:ro"
       # Load my-secrets.yaml as an environment file
-      - "secrets-ldap:/container/environment/01-custom:rw"
+      - "secrets-ldap:/container/environment/01-custom:ro"
+      - "secrets-ldap:/secrets/ldap:ro"
     ports:
       - 127.0.0.1:1389:389
       - 127.0.0.1:1636:633
@@ -65,7 +66,7 @@ services:
     ports:
       - 127.0.0.1:8095:8095
 
-  bibucket:
+  bitbucket:
     image: atlassian/bitbucket:latest
     volumes:
       - bitbucket-data:/var/atlassian/application-data/bitbucket
