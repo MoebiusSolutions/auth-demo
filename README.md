@@ -36,8 +36,8 @@ bash show-secrets.sh
 
 ## Service Links
 
-* Bitbucket: [http://127.0.0.1:7999/](http://127.0.0.1:7999/)
-* Bitbucket Admin: [http://127.0.0.1:7990/](http://127.0.0.1:7990/)
+* Bitbucket: [http://127.0.0.1:7990/](http://127.0.0.1:7990/)
+* Bitbucket SSH: [http://127.0.0.1:7999/](http://127.0.0.1:7999/)
 * Crowd: [http://127.0.0.1:8095/](http://127.0.0.1:8095/)
 * OpenLDAP UI [https://127.0.0.1:8443/](https://127.0.0.1:8443/)
 
