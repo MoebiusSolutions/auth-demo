@@ -1,5 +1,10 @@
 # NISE Authentication Demo (nise-auth-demo)
 
+## Repo Identity
+
+At the time of this writing, this project was hosted at
+[gitlab.moesol.com/rkenney/nise-auth-demo](https://gitlab.moesol.com/rkenney/nise-auth-demo)
+
 ## Basic Cluster Start/Stop/Wipe
 
 We (re)start the continers with:
