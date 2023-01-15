@@ -1,45 +1,53 @@
 # Setup - Initialize Bitbucket
 
-## Provision Crowd
+## Provision Bitbucket
 
-Open Bitbucket at [http://127.0.0.1:7990/](http://127.0.0.1:7990/)
+Open Bitbucket at [http://bitbucket.auth-demo.docker:7990/](http://bitbucket.auth-demo.docker:7990/)
 
-Enter **Welcome** options and click **Next**:
+Enter the following on **Welcome** and click **Next**:
 
 * Database: `Internal`
 
-Use [my.atlassian.com](https://my.atlassian.com/) to create a Data Center (trial) license for Bitbucket
+Copy the **Server ID** from **License and settings**, and use it on 
+[my.atlassian.com](https://my.atlassian.com/) to create a Data Center (trial) license for Bitbucket
 
-Enter the license key and click **Next**
+Select **I have a Bitbucket license key**, enter the new license key, and click **Next**
 
 Enter **Administrator account setup** options:
 
-* Username: `admin`
+* Username: (see output of `show-secrets.sh` for `Bitbucket Admin`)
 * Full name: `Administrator`
-* Email address: (working email address)
-* Password: (a random password)
+* Email address: (your email address)
+* Password: (see output of `show-secrets.sh` for `Bitbucket Admin`)
 
 ... and click **Go to Bitbucket**
 
 ## Add Crowd Directory to Bitbucket
 
-Open Bitbucket at [http://127.0.0.1:7990/](http://127.0.0.1:7990/) and login as the admin
+Open Bitbucket at [http://bitbucket.auth-demo.docker:7990/](http://bitbucket.auth-demo.docker:7990/) and login as the admin
 
-Open **Administration**, then click **User Directories** on left panel, then click **Add Directory**, select **Atlassian Crowd** and click **Next**
+Open **Administration** (gear icon)
 
-Enter the following options on **Confiure Atlassian Crowd Server** and click **Save and Test**:
+Click **User Directories** on left panel, then click **Add Directory**, select **Atlassian Crowd** and click **Next**
 
-* Name: `Crowd Server`
-* Server URL: `http://crowd:8095/crowd/`
-* Application Name: `Bitbucket` (must match what was setup as an App inside of Crowd)
+Enter the following options on **Confiure Atlassian Crowd Server** and click **Test Settings**:
 
-Click **User Directories** in the left panel, then click **Synchronize** next to the newly created `Crowd Server`
+* Name: `Demo Crowd`
+* Server URL: `http://crowd.auth-demo.docker:8095/crowd/`
+* Application Name: (see output of `show-secrets.sh` for `Crowd/Bitbucket App Connector`)
+* Application Password: (see output of `show-secrets.sh` for `Crowd/Bitbucket App Connector`)
 
-Refresh the page to update the sync status message
+Click **Save and Test** to save the settings
+
+Click **Synchronize** next to the newly created `Demo Server` entry
+
+Click **Users** in the left panel, and confirm that the user `Peter Swanson` was loaded from LDAP
 
 ## Grant LDAP Group Access to Bitbucket
 
-Open Bitbucket at [http://127.0.0.1:7990/](http://127.0.0.1:7990/) and login as the admin
+Open Bitbucket at [http://bitbucket.auth-demo.docker:7990/](http://bitbucket.auth-demo.docker:7990/) and login as the admin
+
+Open **Administration** (gear icon)
 
 Click **Global permissions** on the left panel
 

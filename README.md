@@ -1,4 +1,4 @@
-# NISE Authentication Demo (nise-auth-demo)
+# Authentication Demo (auth-demo)
 
 ## Repo Identity
 
@@ -13,28 +13,37 @@ At the time of this writing, this project was hosted at
    cp .env.template .env
    ```
 
-1. Start the cluster, per [Basic Cluster Operations (Start/Stop/Wipe)](docs/Basic-Cluster-Operations-Start-Stop-Wipe.md):
+2. Copy the output of the following command into your `/etc/hosts` file
+   (allowing the host browser to resolve the docker hosts):
+
+   ```
+   bash show-hosts.sh
+   ```
+
+3. Start the cluster, per [Basic Cluster Operations (Start/Stop/Wipe)](docs/Basic-Cluster-Operations-Start-Stop-Wipe.md):
 
    ```
    bash restart.sh
    ```
 
-2. View auto-generated passwords, per [Basic Cluster Operations (Start/Stop/Wipe)](docs/Basic-Cluster-Operations-Start-Stop-Wipe.md):
+4. View auto-generated passwords, per [Basic Cluster Operations (Start/Stop/Wipe)](docs/Basic-Cluster-Operations-Start-Stop-Wipe.md):
 
    ```
    bash show-secrets.sh
    ```
 
-3. Follow [Initialize Crowd](docs/Setup_Initialize-Crowd.md)
+5. Follow [Initialize Crowd](docs/Setup_Initialize-Crowd.md)
 
-4. Follow [Initialize Bitbucket](docs/Setup_Bitbucket-Crowd.md)
+6. Follow [Initialize Bitbucket](docs/Setup_Bitbucket-Crowd.md)
 
 ## Service Links
 
-* Bitbucket: [http://127.0.0.1:7990/](http://127.0.0.1:7990/)
-* Bitbucket SSH: [http://127.0.0.1:7999/](http://127.0.0.1:7999/)
-* Crowd: [http://127.0.0.1:8095/](http://127.0.0.1:8095/)
-* OpenLDAP UI [https://127.0.0.1:8443/](https://127.0.0.1:8443/)
+The Docker Compose cluster hosts these services (using enties manually added to `/etc/hosts`):
+
+* Bitbucket: [http://bitbucket.auth-demo.docker:7990/](http://bitbucket.auth-demo.docker:7990/)
+* Bitbucket SSH: [http://bitbucket.auth-demo.docker:7999/](http://bitbucket.auth-demo.docker:7999/)
+* Crowd: [http://crowd.auth-demo.docker:8095/](http://crowd.auth-demo.docker:8095/)
+* OpenLDAP UI [https://ldap-ui.auth-demo.docker:8443/](https://ldap-ui.auth-demo.docker:8443/)
 
 ## Docs
 

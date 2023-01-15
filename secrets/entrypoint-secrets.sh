@@ -3,7 +3,7 @@
 # Stop on error
 set -e -o pipefail
 
-function generate_password() {
+function generate_memorable_password() {
     PW_FILE="$1"
     shift
 
@@ -43,13 +43,30 @@ function generate_password() {
     set -e
 }
 
+function write_value() {
+    TARGET_FILE="$1"
+    shift
+
+    echo "[ Writing Value ]: $TARGET_FILE" 1>&2
+    echo -n "$1" > "$TARGET_FILE"
+}
+
 generate_password /secrets/ldap/admin_password
 generate_password /secrets/ldap/pswanson_password
-echo -n "keycloak-admin" > /secrets/keycloak/admin_username
+write_value "keycloak-admin" /secrets/keycloak/admin_username
 generate_password /secrets/keycloak/admin_password
+write_value "crowd-admin" /secrets/crowd/admin_username
+generate_password /secrets/crowd/admin_password
+write_value "bitbucket-admin" /secrets/bitbucket/admin_username
+generate_password /secrets/bitbucket/admin_password
+write_value "demo-bitbucket" /secrets/crowd-bitbucket/app_connector_name
+generate_password /secrets/crowd-bitbucket/app_connector_password
 
+echo "[ Reading ]: /secrets/ldap/admin_password" 1>&2
 export LDAP_ADMIN_PASSWORD="$(cat /secrets/ldap/admin_password | tr -d '\n')"
+echo "[ Reading ]: /secrets/ldap/pswanson_password" 1>&2
 export LDAP_PSWANSON_PASSWORD="$(cat /secrets/ldap/pswanson_password | tr -d '\n')"
+echo "[ Generating ]: LDAP_PSWANSON_PASSWORD_ENCODED" 1>&2
 export LDAP_PSWANSON_PASSWORD_ENCODED="$(slappasswd -n -T /secrets/ldap/pswanson_password)"
 
 PW_FILE="/secrets/ldap/my-env.yaml"

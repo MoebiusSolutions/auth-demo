@@ -1,10 +1,18 @@
 version: '3'
 
 volumes:
-  # (Auto-generated) secrets for the ldap container
+  # (Auto-generated) secrets for...
+  # ... the ldap container
   secrets-ldap:
-  # (Auto-generated) secrets for the keycloak container
+  # ... the keycloak container
   secrets-keycloak:
+  # ... the crowd container
+  secrets-crowd:
+  # ... the bitbucket container
+  secrets-bitbucket:
+  # ... secrets shared between bitbucket and crowd containers
+  secrets-crowd-bitbucket:
+
   # Crowd server storage
   crowd-data:
   # Bitbucket server storage
@@ -14,6 +22,7 @@ services:
 
   # Container used to auto-generate secrets (any time the volumes are wiped)
   secrets:
+    hostname: secrets.auth-demo.docker
     build: secrets
     security_opt:
       # Disable SElinux for volume mounts (since we're using a host mount)
@@ -22,11 +31,15 @@ services:
       - "./ldap:/opt/ldap-init:ro"
       - "secrets-ldap:/secrets/ldap:rw"
       - "secrets-keycloak:/secrets/keycloak:rw"
+      - "secrets-crowd:/secrets/crowd:rw"
+      - "secrets-bitbucket:/secrets/bitbucket:rw"
+      - "secrets-crowd-bitbucket:/secrets/crowd-bitbucket:rw"
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.6"
 
   ldap:
+    hostname: ldap.auth-demo.docker
     image: osixia/openldap:latest
     environment:
       LDAP_ORGANISATION: "Example Inc."
@@ -41,10 +54,8 @@ services:
       # Load my-secrets.yaml as an environment file
       - "secrets-ldap:/container/environment/01-custom:ro"
       - "secrets-ldap:/secrets/ldap:ro"
-    ports:
-      - 127.0.0.1:1389:389
-      - 127.0.0.1:1636:633
     healthcheck:
+      # TODO: Fix this vs random password
       test: ["CMD", "ldapwhoami", "-D", "cn=admin,dc=example,dc=com", "-w", "password", "-H", "ldap://127.0.0.1:389"]
       interval: 30s
       timeout: 5s
@@ -58,9 +69,8 @@ services:
         ipv4_address: "${ENV_IP_PREFIX}.2"
 
   ldap-ui:
+    hostname: ldap-ui.auth-demo.docker
     image: osixia/phpldapadmin:latest
-    ports:
-      - 127.0.0.1:8443:443
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: "ldap"
     networks:
@@ -68,9 +78,8 @@ services:
         ipv4_address: "${ENV_IP_PREFIX}.5"
 
   keycloak:
+    hostname: keycloak.auth-demo.docker
     image: jboss/keycloak:latest
-    ports:
-      - "127.0.0.1:8080:8080"
     environment:
       KEYCLOAK_USER_FILE: "/secrets/keycloak/admin_username"
       KEYCLOAK_PASSWORD_FILE: "/secrets/keycloak/admin_password"
@@ -81,6 +90,7 @@ services:
         ipv4_address: "${ENV_IP_PREFIX}.7"
 
   crowd:
+    hostname: crowd.auth-demo.docker
     image: atlassian/crowd:latest
     environment:
       CROWD_DB_URL: jdbc:postgresql://crowd-db:5432/crowd
@@ -88,19 +98,15 @@ services:
       CROWD_DB_PASSWORD: password
     volumes:
       - crowd-data:/var/atlassian/application-data/crowd
-    ports:
-      - 127.0.0.1:8095:8095
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.4"
 
   bitbucket:
+    hostname: bitbucket.auth-demo.docker
     image: atlassian/bitbucket:latest
     volumes:
       - bitbucket-data:/var/atlassian/application-data/bitbucket
-    ports:
-      - 127.0.0.1:7990:7990
-      - 127.0.0.1:7999:7999
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.3"
