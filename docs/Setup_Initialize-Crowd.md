@@ -66,9 +66,8 @@ Enter the following into **Create Directory Connectory**, and click **Continue**
     * Use paged results: `[_]` (default setting)
     * Use naive DN matching: `[✓]` (default setting)
     * Base DN: `dc=example,dc=com`
-    * Username: `cn=admin,dc=example,dc=com`
-        * **TODO**: Provision a crowd-specific bind user
-    * Password: (see `show-secrets.sh` output for `LDAP Admin`)
+    * Username: `cn=ldap-bind,dc=example,dc=com`
+    * Password: (see `show-secrets.sh` output for `LDAP Bind`)
 
 From the **View directory - OpenLDAP** page, **Details** tab, click **Synchronize now**
 

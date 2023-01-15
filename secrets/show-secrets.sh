@@ -8,6 +8,11 @@ echo "user: admin (cn=admin,dc=example,dc=com)"
 echo "pass: $(cat /secrets/ldap/admin_password)"
 echo ""
 
+echo "[ LDAP Bind (read-only) ]"
+echo "user: $(cat /secrets/ldap-bind/bind_username) (cn=$(cat /secrets/ldap-bind/bind_username),dc=example,dc=com)"
+echo "pass: $(cat /secrets/ldap-bind/bind_password)"
+echo ""
+
 echo "[ LDAP User: Peter Swanson ]"
 echo "user: pswanson (cn=Peter Swanson,ou=People,dc=example,dc=com)"
 echo "pass: $(cat /secrets/ldap/pswanson_password)"

@@ -4,6 +4,8 @@ volumes:
   # (Auto-generated) secrets for...
   # ... the ldap container
   secrets-ldap:
+  # ... read-only (bind) credentials for ldap
+  secrets-ldap-bind:
   # ... the keycloak container
   secrets-keycloak:
   # ... the crowd container
@@ -30,6 +32,7 @@ services:
     volumes:
       - "./ldap:/opt/ldap-init:ro"
       - "secrets-ldap:/secrets/ldap:rw"
+      - "secrets-ldap-bind:/secrets/ldap-bind:rw"
       - "secrets-keycloak:/secrets/keycloak:rw"
       - "secrets-crowd:/secrets/crowd:rw"
       - "secrets-bitbucket:/secrets/bitbucket:rw"
@@ -72,7 +75,7 @@ services:
     hostname: ldap-ui.auth-demo.docker
     image: osixia/phpldapadmin:latest
     environment:
-      PHPLDAPADMIN_LDAP_HOSTS: "ldap"
+      PHPLDAPADMIN_LDAP_HOSTS: "ldap.auth-demo.docker"
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.5"
