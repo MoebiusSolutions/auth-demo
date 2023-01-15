@@ -45,6 +45,8 @@ function generate_password() {
 
 generate_password /secrets/ldap/admin_password
 generate_password /secrets/ldap/pswanson_password
+echo -n "keycloak-admin" > /secrets/keycloak/admin_username
+generate_password /secrets/keycloak/admin_password
 
 export LDAP_ADMIN_PASSWORD="$(cat /secrets/ldap/admin_password | tr -d '\n')"
 export LDAP_PSWANSON_PASSWORD="$(cat /secrets/ldap/pswanson_password | tr -d '\n')"
