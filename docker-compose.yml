@@ -19,6 +19,9 @@ services:
     volumes:
       - "./ldap:/opt/ldap-init:ro"
       - "secrets-ldap:/secrets/ldap:rw"
+    networks:
+      network:
+        ipv4_address: "${ENV_IP_PREFIX}.6"
 
   ldap:
     image: osixia/openldap:latest
@@ -47,6 +50,9 @@ services:
     depends_on:
       secrets:
         condition: service_completed_successfully
+    networks:
+      network:
+        ipv4_address: "${ENV_IP_PREFIX}.2"
 
   ldap-ui:
     image: osixia/phpldapadmin:latest
@@ -54,6 +60,9 @@ services:
       - 127.0.0.1:8443:443
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: "ldap"
+    networks:
+      network:
+        ipv4_address: "${ENV_IP_PREFIX}.5"
 
   crowd:
     image: atlassian/crowd:latest
@@ -65,6 +74,9 @@ services:
       - crowd-data:/var/atlassian/application-data/crowd
     ports:
       - 127.0.0.1:8095:8095
+    networks:
+      network:
+        ipv4_address: "${ENV_IP_PREFIX}.4"
 
   bitbucket:
     image: atlassian/bitbucket:latest
@@ -73,4 +85,16 @@ services:
     ports:
       - 127.0.0.1:7990:7990
       - 127.0.0.1:7999:7999
+    networks:
+      network:
+        ipv4_address: "${ENV_IP_PREFIX}.3"
 
+networks:
+  network:
+    driver: bridge
+    ipam:
+      config:
+        # NOTE: We set static IPs because Crowd depends upon an IP whitelist.
+        #       Otherwise we would have to re-set the whitelist on every restart.
+        - subnet: "${ENV_IP_PREFIX}.0/16"
+          gateway: "${ENV_IP_PREFIX}.1"

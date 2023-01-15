@@ -5,34 +5,29 @@
 At the time of this writing, this project was hosted at
 [gitlab.moesol.com/rkenney/nise-auth-demo](https://gitlab.moesol.com/rkenney/nise-auth-demo)
 
-## Basic Cluster Start/Stop/Wipe
+## Getting Started
 
-We (re)start the continers with:
+1. Create `.env` (and tweak settings if necessary):
 
-```
-bash restart.sh
-```
+   ```
+   cp .env.template .env
+   ```
 
-We stop the cluster (deleting the stateless containers, but leaving volumes intact) with:
+1. Start the cluster, per [Basic Cluster Operations (Start/Stop/Wipe)](docs/Basic-Cluster-Operations-Start-Stop-Wipe.md):
 
-```
-bash stop.sh
-```
+   ```
+   bash restart.sh
+   ```
 
-We stop and wipe the cluster (deleting all containers and volumes) with:
+2. View auto-generated passwords, per [Basic Cluster Operations (Start/Stop/Wipe)](docs/Basic-Cluster-Operations-Start-Stop-Wipe.md):
 
-```
-bash wipe.sh
-```
+   ```
+   bash show-secrets.sh
+   ```
 
-**ATTENTION**: You may want to be careful not to wipe after you have licensed Atlassian products.
-I am not yet sure how easy it is to setup a new trial license if the server ID changes.
+3. Follow [Initialize Crowd](docs/Setup_Initialize-Crowd.md)
 
-We view the randomly generated passwords with:
-
-```
-bash show-secrets.sh
-```
+4. Follow [Initialize Bitbucket](docs/Setup_Bitbucket-Crowd.md)
 
 ## Service Links
 
@@ -41,14 +36,10 @@ bash show-secrets.sh
 * Crowd: [http://127.0.0.1:8095/](http://127.0.0.1:8095/)
 * OpenLDAP UI [https://127.0.0.1:8443/](https://127.0.0.1:8443/)
 
-## Setting Up Products
+## Docs
 
-Initial Setup
-
+* [Basic Cluster Operations (Start/Stop/Wipe)](docs/Basic-Cluster-Operations-Start-Stop-Wipe.md)
 * [Setup - Initialize Crowd](docs/Setup_Initialize-Crowd.md)
-* [Setup - Bitbucket Crowd](docs/Setup_Bitbucket-Crowd.md)
-
-## Other Notes
-
+* [Setup - Initialize Bitbucket](docs/Setup_Initialize-Bitbucket.md)
 * [Manual Actions in LDAP UI](docs/Manual-Actions-in-LDAP-UI.md)
 * [Manual Actions in LDAP CLI](docs/Manual-Actions-in-LDAP-CLI.md)
