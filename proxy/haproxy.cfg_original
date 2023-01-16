@@ -1,0 +1,45 @@
+
+global
+    daemon
+    maxconn 256
+    # Set minimum TLS version
+    ssl-default-bind-options ssl-min-ver TLSv1.2
+    # Log to stdout
+    log stdout format raw local0
+
+
+defaults
+    mode            http
+
+    # Explicit timeouts required
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+    # Apply log line in global to all other sections
+    log global
+
+frontend proxy.orp1.moedie.us
+    # TODO: Use or remove
+    #log-format %hrl
+
+    bind            *:80
+    # Redirect http to https
+    http-request redirect scheme https code 301 unless { ssl_fc }
+
+    # "verify required": Require client certificate
+    bind            *:443 ssl crt /orp-proxy-secrets/certs/server.cert-key.pem ca-file /certs/client-cacerts.pem verify required
+
+    acl has_sampleapp path_sub /sample-app
+    use_backend sample-app if has_sampleapp
+
+    default_backend orp
+
+backend orp
+    # "init-addr none": Allow proxy to startup even if backend does not immediately DNS resolve
+    server orp orp.minerva2.moedie.local:8080 maxconn 32 init-addr none
+
+backend sample-app
+    server sample-app sample-app:8080 maxconn 32
+
+

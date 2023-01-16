@@ -14,6 +14,10 @@ volumes:
   secrets-bitbucket:
   # ... secrets shared between bitbucket and crowd containers
   secrets-crowd-bitbucket:
+  # ... the certificate authority
+  secrets-certs-ca:
+  # ... the proxy
+  secrets-certs-proxy:
 
   # Crowd server storage
   crowd-data:
@@ -37,9 +41,26 @@ services:
       - "secrets-crowd:/secrets/crowd:rw"
       - "secrets-bitbucket:/secrets/bitbucket:rw"
       - "secrets-crowd-bitbucket:/secrets/crowd-bitbucket:rw"
+      - "secrets-certs-ca:/secrets/certs/ca:rw"
+      - "secrets-certs-proxy:/secrets/certs/*.auth-demo.docker:rw"
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.6"
+
+  proxy:
+    hostname: proxy.auth-demo.docker
+    image: haproxy:latest
+    volumes:
+      - ./proxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - "secrets-certs-proxy:/secrets/certs/*.auth-demo.docker:ro"
+    expose:
+      - "443"
+    networks:
+      network:
+        ipv4_address: "${ENV_IP_PREFIX}.8"
+    depends_on:
+      secrets:
+        condition: service_completed_successfully
 
   ldap:
     hostname: ldap.auth-demo.docker
@@ -64,12 +85,12 @@ services:
       timeout: 5s
       retries: 4
       start_period: 10s
-    depends_on:
-      secrets:
-        condition: service_completed_successfully
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.2"
+    depends_on:
+      secrets:
+        condition: service_completed_successfully
 
   ldap-ui:
     hostname: ldap-ui.auth-demo.docker
@@ -79,6 +100,9 @@ services:
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.5"
+    depends_on:
+      secrets:
+        condition: service_completed_successfully
 
   keycloak:
     hostname: keycloak.auth-demo.docker
@@ -91,6 +115,9 @@ services:
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.7"
+    depends_on:
+      secrets:
+        condition: service_completed_successfully
 
   crowd:
     hostname: crowd.auth-demo.docker
@@ -104,6 +131,9 @@ services:
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.4"
+    depends_on:
+      secrets:
+        condition: service_completed_successfully
 
   bitbucket:
     hostname: bitbucket.auth-demo.docker
@@ -113,6 +143,9 @@ services:
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.3"
+    depends_on:
+      secrets:
+        condition: service_completed_successfully
 
 networks:
   network:

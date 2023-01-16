@@ -3,6 +3,10 @@
 # Stop on error
 set -e -o pipefail
 
+SCRIPT_FILE="$(basename "$0")"
+# NOTE: readlink will not work in OSX
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+
 function generate_memorable_password() {
     PW_FILE="$1"
     shift
@@ -91,5 +95,8 @@ envsubst < /opt/ldap-init/my-env.yaml.bashtemplate > "$PW_FILE"
 PW_FILE="/secrets/ldap/ldap-init.ldif"
 echo "[ Generating ]: $PW_FILE" 1>&2
 envsubst < /opt/ldap-init/ldap-init.ldif.bashtemplate > "$PW_FILE"
+
+# Generate certificates
+"$SCRIPT_DIR/gen-certs.sh" "/secrets/certs"
 
 echo "[ SUCCESS (exiting) ]" 1>&2
