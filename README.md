@@ -42,7 +42,7 @@ At the time of this writing, this project was hosted at
 
 The Docker Compose cluster hosts these services (using enties manually added to `/etc/hosts`):
 
-* OpenLDAP UI [https://ldap-ui.auth-demo.docker:844/](https://ldap-ui.auth-demo.docker:844/)
+* OpenLDAP UI [https://ldap-ui.auth-demo.docker:443/](https://ldap-ui.auth-demo.docker:443/)
 * Keycloak [http://keycloak.auth-demo.docker:8080/](http://keycloak.auth-demo.docker:8080/)
 * Crowd: [http://crowd.auth-demo.docker:8095/](http://crowd.auth-demo.docker:8095/)
 * Bitbucket: [http://bitbucket.auth-demo.docker:7990/](http://bitbucket.auth-demo.docker:7990/)
