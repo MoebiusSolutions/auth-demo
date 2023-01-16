@@ -36,17 +36,28 @@ At the time of this writing, this project was hosted at
 
 6. Follow [Initialize Bitbucket](docs/Setup_Initialize-Bitbucket.md)
 
-6. Follow [Initialize Keycloak](docs/Setup_Initialize-Keycloak.md)
+7. Follow [Initialize Keycloak](docs/Setup_Initialize-Keycloak.md)
 
 ## Service Links
 
-The Docker Compose cluster hosts these services (using enties manually added to `/etc/hosts`):
+**NOTE**: All of the following hostnames come from `/etc/hosts` entries you should install from `show-hosts.sh`
+
+Direct/internal service URLs:
 
 * OpenLDAP UI [https://ldap-ui.auth-demo.docker:443/](https://ldap-ui.auth-demo.docker:443/)
 * Keycloak [http://keycloak.auth-demo.docker:8080/](http://keycloak.auth-demo.docker:8080/)
 * Crowd: [http://crowd.auth-demo.docker:8095/](http://crowd.auth-demo.docker:8095/)
 * Bitbucket: [http://bitbucket.auth-demo.docker:7990/](http://bitbucket.auth-demo.docker:7990/)
 * Bitbucket SSH: [http://bitbucket.auth-demo.docker:7999/](http://bitbucket.auth-demo.docker:7999/)
+
+Proxied (HTTPS) service URLs:
+
+* OpenLDAP UI [https://ldap-ui.proxy.auth-demo.docker/](https://ldap-ui.proxy.auth-demo.docker/)
+   * **TODO**: Fix this proxy connection. Either we have to load a proper cert into the backend container,
+     or we have to enable an HTTP service port.
+* Keycloak [https://keycloak.proxy.auth-demo.docker/](https://keycloak.proxy.auth-demo.docker/)
+* Crowd: [https://crowd.proxy.auth-demo.docker/](https://crowd.proxy.auth-demo.docker/)
+* Bitbucket: [https://bitbucket.proxy.auth-demo.docker/](https://bitbucket.proxy.auth-demo.docker/)
 
 ## Docs
 

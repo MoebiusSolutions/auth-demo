@@ -110,6 +110,9 @@ TARGET_DIR="$1"
 
 # Create certs
 create_root_cert "${TARGET_DIR}/ca-private"
+create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "ldap-ui.proxy.auth-demo.docker"
+create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "keycloak.proxy.auth-demo.docker"
+create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "crowd.proxy.auth-demo.docker"
 create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "bitbucket.proxy.auth-demo.docker"
 
 # Share the CA cert with all machines
