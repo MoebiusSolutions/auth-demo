@@ -1,13 +1,14 @@
-# Authentication Demo (auth-demo)
+# Atlassian/Keycloak/OpenLDAP/SSO Auth Demo (auth-demo)
 
 ## Repo Identity
 
-At the time of this writing, this project was hosted at
-[gitlab.moesol.com/rkenney/nise-auth-demo](https://gitlab.moesol.com/rkenney/nise-auth-demo)
+At the time of this writing, this project was hosted at:
+
+* [github.com/MoebiusSolutions/auth-demo](https://github.com/MoebiusSolutions/auth-demo)
 
 ## Overview
 
-Here is a snapshot of what is implemented thus far:
+This repo is a work in progress, but here is a snapshot of what was implemented at the time of this writing:
 
 ![](https://www.moesol.com/plantuml/png/bOzFIyGm4CNlyoc6FMqFozxti50L51HS1F4YIDgCsz2Q3CdKjOZVtIQsKGHPzvJ9Ux_vypfw5XI7tkmRGMqyrMAS1L1xie9NvSwxjm5LG8x59DyosPkBSXVrJYi6wpJXue4gB9d30jy1yGlbXYEfz8knC_xKc-nVqr1tJhNHQwSwcsT6ghvkIQ9RpPzidtjtqD6gOm4V0Eb8N6tpg0tUqIlvG9Y2FDfb8yB5DpZTSvJBsu-IwPY_A9ZspQitU1z6R7tfNSzXnA9OZAydfTS7RuGAI1F_rR5ojXiAcDEVqWCvuOyGlzfIXay0.png)
 
