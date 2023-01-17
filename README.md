@@ -5,6 +5,12 @@
 At the time of this writing, this project was hosted at
 [gitlab.moesol.com/rkenney/nise-auth-demo](https://gitlab.moesol.com/rkenney/nise-auth-demo)
 
+## Overview
+
+Here is a snapshot of what is implemented thus far:
+
+![](https://www.moesol.com/plantuml/png/bOzFIyGm4CNlyoc6FMqFozxti50L51HS1F4YIDgCsz2Q3CdKjOZVtIQsKGHPzvJ9Ux_vypfw5XI7tkmRGMqyrMAS1L1xie9NvSwxjm5LG8x59DyosPkBSXVrJYi6wpJXue4gB9d30jy1yGlbXYEfz8knC_xKc-nVqr1tJhNHQwSwcsT6ghvkIQ9RpPzidtjtqD6gOm4V0Eb8N6tpg0tUqIlvG9Y2FDfb8yB5DpZTSvJBsu-IwPY_A9ZspQitU1z6R7tfNSzXnA9OZAydfTS7RuGAI1F_rR5ojXiAcDEVqWCvuOyGlzfIXay0.png)
+
 ## Getting Started
 
 1. Create `.env` (and tweak settings if necessary):
@@ -37,7 +43,7 @@ At the time of this writing, this project was hosted at
    ```
    sudo docker compose run -it --rm secrets cat /secrets/certs/ca-shared/root-ca.crt > root-ca.crt
    ```
-   
+
    ... and then load the file into your browser as an "Authority"
 
 5. Follow [Initialize Crowd](docs/Setup_Initialize-Crowd.md)
