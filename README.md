@@ -45,13 +45,19 @@ This repo is a work in progress, but here is a snapshot of what was implemented 
    sudo docker compose run -it --rm secrets cat /secrets/certs/ca-shared/root-ca.crt > root-ca.crt
    ```
 
-   ... and then load the file into your browser as an "Authority"
+   ... and then load the file into your browser as a Certificate Authority
 
 5. Follow [Initialize Crowd](docs/Setup_Initialize-Crowd.md)
 
 6. Follow [Initialize Bitbucket](docs/Setup_Initialize-Bitbucket.md)
 
 7. Follow [Initialize Keycloak](docs/Setup_Initialize-Keycloak.md)
+
+8. Follow [Download IDP Metadata XML from Keycloak](docs/Setup_Download-IDP-Metadata-XML-from-Keycloak.md)
+
+9. Follow [Add SAML Authentication to Bitbucket](docs/Setup_Add-SAML-Authentication-to-Bitbucket.md)
+
+10. Follow [Add SAML Client to Keycloak](docs/Setup_Add-SAML-Client-to-Keycloak.md)
 
 ## Service Links
 
@@ -80,5 +86,9 @@ Direct/internal service URLs:
 * [Setup - Initialize Crowd](docs/Setup_Initialize-Crowd.md)
 * [Setup - Initialize Bitbucket](docs/Setup_Initialize-Bitbucket.md)
 * [Setup - Initialize Keycloak](docs/Setup_Initialize-Keycloak.md)
+* [Setup - Download IDP Metadata XML from Keycloak](docs/Setup_Download-IDP-Metadata-XML-from-Keycloak.md)
+* [Setup - Add SAML Authentication to Bitbucket](docs/Setup_Add-SAML-Authentication-to-Bitbucket.md)
+* [Setup - Add SAML Client to Keycloak](docs/Setup_Add-SAML-Client-to-Keycloak.md)
 * [Manual Actions in LDAP UI](docs/Manual-Actions-in-LDAP-UI.md)
 * [Manual Actions in LDAP CLI](docs/Manual-Actions-in-LDAP-CLI.md)
+* [Resolving "Found an Attribute element with duplicated Name" SAML Error in Bitbucket](Resolving-Found-an-Attribute-element-with-duplicated-Name-SAML-Error-in-Bitbucket.md)
