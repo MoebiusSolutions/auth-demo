@@ -3,13 +3,13 @@
 We (re)start the continers with:
 
 ```
-bash restart.sh
+bash redeploy.sh
 ```
 
 We stop the cluster (deleting the stateless containers, but leaving volumes intact) with:
 
 ```
-bash stop.sh
+bash undeploy.sh
 ```
 
 We stop and wipe the cluster (deleting all containers and volumes) with:

@@ -29,7 +29,7 @@ Here is a snapshot of what is implemented thus far:
 3. Start the cluster, per [Basic Cluster Operations (Start/Stop/Wipe)](docs/Basic-Cluster-Operations-Start-Stop-Wipe.md):
 
    ```
-   bash restart.sh
+   bash redeploy.sh
    ```
 
 4. View auto-generated passwords, per [Basic Cluster Operations (Start/Stop/Wipe)](docs/Basic-Cluster-Operations-Start-Stop-Wipe.md):
