@@ -52,7 +52,7 @@ services:
 
   proxy:
     hostname: proxy.auth-demo.docker
-    image: haproxy:latest
+    image: haproxy:2.7.1
     security_opt:
       # Disable SElinux for volume mounts (since we're using a host mount)
       - "label=disable"
@@ -71,7 +71,7 @@ services:
 
   ldap:
     hostname: ldap.auth-demo.docker
-    image: osixia/openldap:latest
+    image: osixia/openldap:1.5.0
     environment:
       LDAP_ORGANISATION: "Example Inc."
       LDAP_DOMAIN: "example.com"
@@ -100,6 +100,8 @@ services:
 
   ldap-ui:
     hostname: ldap-ui.auth-demo.docker
+    # NOTE: There isn't a tagged version near as new as ":latest", so I'm leaving it as ":latest".
+    #       That being said, this base image looks like abandonware (2 years old).
     image: osixia/phpldapadmin:latest
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: "ldap.auth-demo.docker"
@@ -112,7 +114,7 @@ services:
 
   keycloak:
     hostname: keycloak.auth-demo.docker
-    image: jboss/keycloak:latest
+    image: jboss/keycloak:16.1.1
     environment:
       KEYCLOAK_USER_FILE: "/secrets/keycloak/admin_username"
       KEYCLOAK_PASSWORD_FILE: "/secrets/keycloak/admin_password"
@@ -132,7 +134,7 @@ services:
 
   crowd:
     hostname: crowd.auth-demo.docker
-    image: atlassian/crowd:latest
+    image: atlassian/crowd:5.1.1
     environment:
       CROWD_DB_URL: jdbc:postgresql://crowd-db:5432/crowd
       CROWD_DB_USER: postgres
@@ -153,7 +155,7 @@ services:
 
   bitbucket:
     hostname: bitbucket.auth-demo.docker
-    image: atlassian/bitbucket:latest
+    image: atlassian/bitbucket:8.7.0
     environment:
       SERVER_PROXY_NAME: "bitbucket.proxy.auth-demo.docker"
       SERVER_PROXY_PORT: "443"

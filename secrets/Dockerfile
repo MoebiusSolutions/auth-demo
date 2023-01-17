@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:23.04
 
 RUN set -x && \
     # NOTE: slapd install prompts for passwd without DEBIAN_FRONTEND setting
