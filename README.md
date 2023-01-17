@@ -32,6 +32,14 @@ At the time of this writing, this project was hosted at
    bash show-secrets.sh
    ```
 
+5. Save a copy of CA cert:
+
+   ```
+   sudo docker compose run -it --rm secrets cat /secrets/certs/ca-shared/root-ca.crt > root-ca.crt
+   ```
+   
+   ... and then load the file into your browser as an "Authority"
+
 5. Follow [Initialize Crowd](docs/Setup_Initialize-Crowd.md)
 
 6. Follow [Initialize Bitbucket](docs/Setup_Initialize-Bitbucket.md)

@@ -2,15 +2,15 @@
 
 ## Add LDAP Connecton to Keycloak
 
-Open Keycloak at [http://keycloak.auth-demo.docker:8080/](http://keycloak.auth-demo.docker:8080/)
+Open Keycloak at [https://keycloak.proxy.auth-demo.docker/](https://keycloak.proxy.auth-demo.docker/)
 
-Click **Administration Console**, and login with the `Keycloak Admin` credentials from `show-secrets.sh`
+Click **Administration Console**, and login aamin (the `Keycloak Admin` credentials from `show-secrets.sh`)
 
 Click **User Federation** in the left panel, and then select **ldap**
 
 Enter the following options on **Add use federation provider**, and then click **Save**:
 
-* Console Display Name: `Demo OpenLDAP`
+* Console Display Name: `Demo LDAP`
 * Import Users: `ON`
 * Edit Mode: `READ_ONLY`
 * Vendor: `Other`
@@ -32,10 +32,9 @@ Click **Synchronize all users** at the bottom of the page
 
 ## Verify LDAP Users Visible
 
-Open Keycloak at [http://keycloak.auth-demo.docker:8080/](http://keycloak.auth-demo.docker:8080/),
+Open Keycloak at [https://keycloak.proxy.auth-demo.docker/](https://keycloak.proxy.auth-demo.docker/),
 then **Administration Console**, and then login as admin
 
 Click **Users** in the left panel, and then click **View all users**
 
 Confirm that `Peter Swanson` / `pswanson` is listed
-

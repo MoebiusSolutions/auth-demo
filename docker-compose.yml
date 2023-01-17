@@ -86,9 +86,8 @@ services:
       - "secrets-ldap:/container/environment/01-custom:ro"
       - "secrets-ldap:/secrets/ldap:ro"
     healthcheck:
-      # TODO: Fix this vs random password
-      test: ["CMD", "ldapwhoami", "-D", "cn=admin,dc=example,dc=com", "-w", "password", "-H", "ldap://127.0.0.1:389"]
-      interval: 30s
+      test: ["CMD", "ldapwhoami", "-D", "cn=admin,dc=example,dc=com", "-y", "/secrets/ldap/admin_password", "-H", "ldap://ldap:389"]
+      interval: 15s
       timeout: 5s
       retries: 4
       start_period: 10s
@@ -117,9 +116,11 @@ services:
     environment:
       KEYCLOAK_USER_FILE: "/secrets/keycloak/admin_username"
       KEYCLOAK_PASSWORD_FILE: "/secrets/keycloak/admin_password"
+      PROXY_ADDRESS_FORWARDING: "true"
     security_opt:
       # Disable SElinux for volume mounts (since we're using a host mount)
       - "label=disable"
+    # TODO: Consider mirror data dirs in the same way as atlassian services
     volumes:
       - "secrets-keycloak:/secrets/keycloak:ro"
     networks:
@@ -141,6 +142,8 @@ services:
       - "label=disable"
     volumes:
       - crowd-data:/var/atlassian/application-data/crowd
+      # This adds trust of the reverse proxy
+      - ./crowd/server.xml:/opt/atlassian/crowd/apache-tomcat/conf/server.xml:ro
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.4"
@@ -151,6 +154,11 @@ services:
   bitbucket:
     hostname: bitbucket.auth-demo.docker
     image: atlassian/bitbucket:latest
+    environment:
+      SERVER_PROXY_NAME: "bitbucket.proxy.auth-demo.docker"
+      SERVER_PROXY_PORT: "443"
+      SERVER_SCHEME: "https"
+      SERVER_SECURE: "true"
     security_opt:
       # Disable SElinux for volume mounts (since we're using a host mount)
       - "label=disable"
