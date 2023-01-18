@@ -12,7 +12,7 @@ Use [my.atlassian.com](https://my.atlassian.com/) to create a Data Center (trial
 
 Enter the license key and click **Continue**
 
-On **Crowd installation**, select **New Installation**  and click **Continue**:
+On **Crowd installation**, select **New Installation**  and click **Continue**
 
 On **Database configuration**, select **Embedded** and click **Continue**:
 

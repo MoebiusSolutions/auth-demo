@@ -50,7 +50,7 @@ Click **Users** in the left panel, and confirm that the user `Peter Swanson` was
 
 ## Grant LDAP Group Access to Bitbucket
 
-Open Bitbucket at [http://bitbucket.auth-demo.docker:7990/](http://bitbucket.auth-demo.docker:7990/) and login as the admin
+Open Bitbucket at [https://bitbucket.proxy.auth-demo.docker/](https://bitbucket.proxy.auth-demo.docker/) and login as the admin
 
 Open **Administration** (gear icon)
 
@@ -60,7 +60,8 @@ Under **Group Access**, enter `Developers`, then select `Bitbucket User`, then c
 
 ## Verify Ability to Login as LDAP Developer
 
-Open Bitbucket at [http://127.0.0.1:7990/](http://127.0.0.1:7990/) and logout (if already logged in)
+Open Bitbucket at [https://bitbucket.proxy.auth-demo.docker/](https://bitbucket.proxy.auth-demo.docker/)
+and logout (if already logged in)
 
 Login as:
 

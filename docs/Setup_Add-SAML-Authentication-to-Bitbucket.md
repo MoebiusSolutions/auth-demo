@@ -10,9 +10,9 @@ Enter the following into **Add new configuration** and then click **Save Configu
 
 * Name: `SAML-SSO`
 * Authentication method: `SAML single sign-on`
-* Single sign-on issuer: `https://keycloak.proxy.auth-demo.docker/auth/realms/master`
+* Single sign-on issuer: `https://keycloak.proxy.auth-demo.docker/auth/realms/SSO-Realm`
     * (This is the `entityID` attribute of the `/EntityDescriptor` element of the IDP Metadata XML downloaded from Keycloak)
-* Identity provider single sign-on URL: `https://keycloak.proxy.auth-demo.docker/auth/realms/master/protocol/saml`
+* Identity provider single sign-on URL: `https://keycloak.proxy.auth-demo.docker/auth/realms/SSO-Realm/protocol/saml`
     * (This is the `Location` attribute of the `/EntityDescriptor/IDPSSODescriptor/SingleLogoutService` element of the IDP Metadata XML downloaded from Keycloak)
 * X.509 Certificate: (The body of the `/EntityDescriptor/IDPSSODescriptor/KeyDescriptor/KeyInfo/X509Data/X509Certificate` element of the IDP Metadata XML downloaded from Keycloak)
 * Username mapping: `${NameID}`

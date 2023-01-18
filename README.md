@@ -91,4 +91,4 @@ Direct/internal service URLs:
 * [Setup - Add SAML Client to Keycloak](docs/Setup_Add-SAML-Client-to-Keycloak.md)
 * [Manual Actions in LDAP UI](docs/Manual-Actions-in-LDAP-UI.md)
 * [Manual Actions in LDAP CLI](docs/Manual-Actions-in-LDAP-CLI.md)
-* [Resolving "Found an Attribute element with duplicated Name" SAML Error in Bitbucket](Resolving-Found-an-Attribute-element-with-duplicated-Name-SAML-Error-in-Bitbucket.md)
+* [Resolving "Found an Attribute element with duplicated Name" SAML Error in Bitbucket](docs/Resolving-Found-an-Attribute-element-with-duplicated-Name-SAML-Error-in-Bitbucket.md)
