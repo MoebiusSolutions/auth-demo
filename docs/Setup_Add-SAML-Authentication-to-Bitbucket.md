@@ -1,4 +1,4 @@
-## Setup - Add SAML Authentication to Bitbucket
+# Setup - Add SAML Authentication to Bitbucket
 
 Open Bitbucket at [https://bitbucket.proxy.auth-demo.docker/](https://bitbucket.proxy.auth-demo.docker/) and login as the admin
 
