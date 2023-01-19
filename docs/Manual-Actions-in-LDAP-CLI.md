@@ -57,6 +57,8 @@ docker compose exec ldap \
         "objectclass=inetOrgPerson"
 ```
 
+NOTE: [The OpenLDAP Admin User is Not Listed in LDAP Queries](The-OpenLDAP-Admin-User-is-Not-Listed-in-LDAP-Queries.md)
+
 ## Adding Users/Groups (ldapadd)
 
 Given that we have the sample `.ldif` file [ldap-init.ldif.bashtemlpate](ldap/ldap-init.ldif.bashtemlpate)

@@ -80,15 +80,11 @@ Direct/internal service URLs:
 * Bitbucket: [http://bitbucket.auth-demo.docker:7990/](http://bitbucket.auth-demo.docker:7990/)
 * Bitbucket SSH: [http://bitbucket.auth-demo.docker:7999/](http://bitbucket.auth-demo.docker:7999/)
 
-## Docs
+## Other Docs
 
 * [Basic Cluster Operations (Start/Stop/Wipe)](docs/Basic-Cluster-Operations-Start-Stop-Wipe.md)
-* [Setup - Initialize Crowd](docs/Setup_Initialize-Crowd.md)
-* [Setup - Initialize Bitbucket](docs/Setup_Initialize-Bitbucket.md)
-* [Setup - Initialize Keycloak](docs/Setup_Initialize-Keycloak.md)
-* [Setup - Download IDP Metadata XML from Keycloak](docs/Setup_Download-IDP-Metadata-XML-from-Keycloak.md)
-* [Setup - Add SAML Authentication to Bitbucket](docs/Setup_Add-SAML-Authentication-to-Bitbucket.md)
-* [Setup - Add SAML Client to Keycloak](docs/Setup_Add-SAML-Client-to-Keycloak.md)
 * [Manual Actions in LDAP UI](docs/Manual-Actions-in-LDAP-UI.md)
 * [Manual Actions in LDAP CLI](docs/Manual-Actions-in-LDAP-CLI.md)
 * [Resolving "Found an Attribute element with duplicated Name" SAML Error in Bitbucket](docs/Resolving-Found-an-Attribute-element-with-duplicated-Name-SAML-Error-in-Bitbucket.md)
+* [The OpenLDAP Admin User is Not Listed in LDAP Queries](docs/The-OpenLDAP-Admin-User-is-Not-Listed-in-LDAP-Queries.md)
+* [Fixing SAML SSO Logout](docs/Fixing-SAML-SSO-Logout.md)
