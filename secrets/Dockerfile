@@ -8,7 +8,9 @@ RUN set -x && \
         # Provides envsubst, which is used to replace environment variables in config files
         gettext \
         # Provides slappasswd, which is used for encoding ldap passwords
-        slapd && \
+        slapd \
+        # Provides the JDK system certifiate store (which gives us a store to append our self-signed CA to)
+        openjdk-11-jdk-headless && \
     rm -rf /var/lib/apt/lists/*
 
 ADD --chown=root:root entrypoint-secrets.sh /opt/secrets/

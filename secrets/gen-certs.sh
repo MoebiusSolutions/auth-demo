@@ -28,8 +28,37 @@ function create_root_cert() {
         echo "[Root CA Cert Already Exists]"
     else
         echo "[Creating Root CA Cert]"
-        openssl req -x509 -new -nodes -keyout "${target_dir_ca}/root-ca.crt.key" -days 1024 -out "${target_dir_ca}/root-ca.crt" \
-            -subj "/C=US/ST=California/L=San Diego/O=Auth-Demo/OU=Auth-Demo/CN=Auth-Demo-RootCA"
+        # NOTE: Using a config file in order to specify KeyUsage:CertificateSign
+        #       (required by some software, such as MITMProxy)
+        cat << EOF > "${target_dir_ca}/root-ca.req.config"
+[req]
+default_bits = 2048
+distinguished_name = req_distinguished_name
+x509_extensions  = req_x509_ext
+prompt = no
+
+[req_distinguished_name]
+C = US
+ST = California
+L = San Diego
+O = Auth-Demo
+OU = Auth-Demo
+CN = Auth-Demo-RootCA
+
+[req_x509_ext]
+basicConstraints       = critical, CA:true
+#subjectKeyIdentifier   = hash
+#authorityKeyIdentifier = keyid:always, issuer:always
+keyUsage               = cRLSign, keyCertSign
+#extendedKeyUsage       = codeSigning, timeStamping
+#subjectAltName         = DNS:ca.fyicenter.com, email:ca@fyicenter.com
+#issuerAltName          = issuer:copy
+EOF
+        openssl req -x509 -new -nodes \
+            -keyout "${target_dir_ca}/root-ca.crt.key" \
+            -days 1024 \
+            -out "${target_dir_ca}/root-ca.crt" \
+            -config "${target_dir_ca}/root-ca.req.config"
     fi
 }
 
@@ -117,6 +146,14 @@ create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "bitbucket.
 
 # Share the CA cert with all machines
 cp "${TARGET_DIR}/ca-private/root-ca.crt" "${TARGET_DIR}/ca-shared/root-ca.crt"
+
+# Generate a Java truststore that includes our the CA
+cp /etc/ssl/certs/java/cacerts "${TARGET_DIR}/ca-shared/cacerts.jks"
+keytool -import -noprompt \
+  -file "${TARGET_DIR}/ca-shared/root-ca.crt" \
+  -alias Root-Auth-Demo \
+  -keystore "${TARGET_DIR}/ca-shared/cacerts.jks" \
+  -storepass changeit
 
 # Change ownership to match the UID:GID of containers (making key files readable)
 find "${TARGET_DIR}/proxy" -type f -exec chown '99:99' {} \;
