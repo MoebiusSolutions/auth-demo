@@ -3,29 +3,33 @@
 We (re)start the continers with:
 
 ```
-bash redeploy.sh
+./authdemo-redeploy.sh
 ```
 
 We stop the cluster (deleting the stateless containers, but leaving volumes intact) with:
 
 ```
-bash undeploy.sh
+./authdemo-undeploy.sh
 ```
 
 We stop and wipe the cluster (deleting all containers and volumes) with:
 
 ```
-bash wipe.sh
+./authdemo-wipe.sh
 ```
 
 We view the randomly generated passwords with:
 
 ```
-bash show-secrets.sh
+./authdemo-show-secrets.sh
 ```
 
-We can redeploy a single container (stop, delete, create--but retaining any volumes) with:
+We can undeploy or redeploy a single container with:
 
 ```
-bash redeploy-container.sh <container-name>
+# Undeploy (stop/delete)
+./auth-demo-undeploy-container.sh <container-name>
+
+# Redeploy (stop/delete/create/start, but retaining any volumes)
+./auth-demo-redeploy-container.sh <container-name>
 ```

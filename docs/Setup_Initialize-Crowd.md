@@ -30,8 +30,8 @@ Enter the following into **Internal directory** and click **Continue**:
 Enter the following into **Default administrator** and click **Continue**:
 
 * Email address: (your email address)
-* Username: (see output of `show-secrets.sh` for `Crowd Admin`)
-* Password: (see output of `show-secrets.sh` for `Crowd Admin`)
+* Username: (see output of `authdemo-show-secrets.sh` for `Crowd Admin`)
+* Password: (see output of `authdemo-show-secrets.sh` for `Crowd Admin`)
 * First name: `Crowd`
 * Last name: `Admin`
 
@@ -63,7 +63,7 @@ Enter the following into **Create Directory Connectory**, and click **Continue**
     * Use naive DN matching: `[✓]` (default setting)
     * Base DN: `dc=example,dc=com`
     * Username: `cn=ldap-bind,dc=example,dc=com`
-    * Password: (see `show-secrets.sh` output for `LDAP Bind`)
+    * Password: (see `authdemo-show-secrets.sh` output for `LDAP Bind`)
 
 From the **View directory - OpenLDAP** page, **Details** tab, click **Synchronize now**
 
@@ -76,8 +76,8 @@ Click **Applications**, then click **Add application**
 Enter the following into **Add application** and click **Next**:
 
 * Application type: `Bitbucket Server`
-* Name: (see `Crowd/Bitbucket App Connector` name from `show-secrets.sh`)
-* Password: (see `Crowd/Bitbucket App Connector` password from `show-secrets.sh`)
+* Name: (see `Crowd/Bitbucket App Connector` name from `authdemo-show-secrets.sh`)
+* Password: (see `Crowd/Bitbucket App Connector` password from `authdemo-show-secrets.sh`)
 
 Enter the following into **Add appliation - bitbucket** and click **Next**:
 

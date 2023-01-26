@@ -20,10 +20,10 @@ Select **I have a Bitbucket license key**, enter the new license key, and click 
 
 Enter **Administrator account setup** options:
 
-* Username: (see output of `show-secrets.sh` for `Bitbucket Admin`)
+* Username: (see output of `authdemo-show-secrets.sh` for `Bitbucket Admin`)
 * Full name: `Bitbucket Admin`
 * Email address: (your email address)
-* Password: (see output of `show-secrets.sh` for `Bitbucket Admin`)
+* Password: (see output of `authdemo-show-secrets.sh` for `Bitbucket Admin`)
 
 ... and click **Go to Bitbucket**
 
@@ -39,8 +39,8 @@ Enter the following options on **Confiure Atlassian Crowd Server** and click **T
 
 * Name: `Demo Crowd`
 * Server URL: `http://crowd.auth-demo.docker:8095/crowd/`
-* Application Name: (see output of `show-secrets.sh` for `Crowd/Bitbucket App Connector`)
-* Application Password: (see output of `show-secrets.sh` for `Crowd/Bitbucket App Connector`)
+* Application Name: (see output of `authdemo-show-secrets.sh` for `Crowd/Bitbucket App Connector`)
+* Application Password: (see output of `authdemo-show-secrets.sh` for `Crowd/Bitbucket App Connector`)
 
 Click **Save and Test** to save the settings
 
@@ -66,4 +66,4 @@ and logout (if already logged in)
 Login as:
 
 * Username: `pswanson`
-* Password: (see output of `show-secrets.sh` for Peter Swanson)
+* Password: (see output of `authdemo-show-secrets.sh` for Peter Swanson)

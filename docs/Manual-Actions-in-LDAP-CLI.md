@@ -5,7 +5,7 @@
 We can see the current admin password with this helper script:
 
 ```
-bash show-secrets.sh
+bash authdemo-show-secrets.sh
 ```
 
 ## Connecting to LDAP
@@ -27,7 +27,7 @@ docker compose exec ldap \
 
 ```
 
-... or with credentials (LDAP Admin password coming from `show-secrets.sh`):
+... or with credentials (LDAP Admin password coming from `authdemo-show-secrets.sh`):
 
 ```
 docker compose exec ldap \

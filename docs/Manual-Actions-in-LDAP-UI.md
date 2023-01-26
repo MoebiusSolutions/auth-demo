@@ -7,7 +7,7 @@ Open the LDAP UI at [https://ldap-ui.auth-demo.docker/](https://ldap-ui.auth-dem
 Login:
 
 * User: `cn=admin,dc=example,dc=com`
-* Pass: (see output of `show-secrets.sh` for `LDAP Admin`)
+* Pass: (see output of `authdemo-show-secrets.sh` for `LDAP Admin`)
 
 We have to have at least one group defined before we can create a user.
 To define a group:

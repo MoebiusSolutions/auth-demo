@@ -28,19 +28,19 @@ Here is the SAML SSO workflow:
    (allowing the host browser to resolve the docker hosts):
 
    ```
-   bash show-hosts.sh
+   ./authdemo-show-hosts.sh
    ```
 
 3. Start the cluster, per [Basic Cluster Operations (Start/Stop/Wipe)](docs/Basic-Cluster-Operations-Start-Stop-Wipe.md):
 
    ```
-   bash redeploy.sh
+   ./authdemo-redeploy.sh
    ```
 
 4. View auto-generated passwords, per [Basic Cluster Operations (Start/Stop/Wipe)](docs/Basic-Cluster-Operations-Start-Stop-Wipe.md):
 
    ```
-   bash show-secrets.sh
+   ./authdemo-show-secrets.sh
    ```
 
 5. Save a copy of CA cert:

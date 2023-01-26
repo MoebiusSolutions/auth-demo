@@ -6,7 +6,7 @@ NOTE: We do this because it is not recommended to put non-admin users in the Mas
 
 Open Keycloak at [https://keycloak.proxy.auth-demo.docker/](https://keycloak.proxy.auth-demo.docker/)
 
-Click **Administration Console**, and login using the `Keycloak Admin` credentials from `show-secrets.sh`
+Click **Administration Console**, and login using the `Keycloak Admin` credentials from `authdemo-show-secrets.sh`
 
 Hover over the current Realm (`Master`) in the left panel--until **Add Realm** appears
 
@@ -21,7 +21,7 @@ Enter the following under **Add realm** and click **Create**
 
 Open Keycloak at [https://keycloak.proxy.auth-demo.docker/](https://keycloak.proxy.auth-demo.docker/)
 
-Click **Administration Console**, and login using the `Keycloak Admin` credentials from `show-secrets.sh`
+Click **Administration Console**, and login using the `Keycloak Admin` credentials from `authdemo-show-secrets.sh`
 
 Ensure that the `SSO-Realm` is active (top of left panel)
 
@@ -46,7 +46,7 @@ Enter the following options on **Add use federation provider**, and then click *
 * Users DN: `dc=example,dc=com`
 * Bind Type: `simple`
 * Bind DN: `cn=ldap-bind,dc=example,dc=com`
-* Bind Credential: (see `show-secrets.sh` output for `LDAP Bind`)
+* Bind Credential: (see `authdemo-show-secrets.sh` output for `LDAP Bind`)
     * Click **Test authentication** button
 
 Click **Synchronize all users** at the bottom of the page
