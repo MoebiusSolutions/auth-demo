@@ -158,4 +158,8 @@ keytool -import -noprompt \
 # Change ownership to match the UID:GID of containers (making key files readable)
 find "${TARGET_DIR}/proxy" -type f -exec chown '99:99' {} \;
 
+# Format the CA key/cert for use by MITMProxy
+cat "${TARGET_DIR}/ca-private/root-ca.crt.key" "${TARGET_DIR}/ca-private/root-ca.crt" > "${TARGET_DIR}/mitm/mitmproxy-ca.pem"
+chmod 0600 "${TARGET_DIR}/mitm/mitmproxy-ca.pem"
+
 echo "==== SUCCESS ===="

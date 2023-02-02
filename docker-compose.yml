@@ -20,6 +20,8 @@ volumes:
   secrets-certs-ca-shared:
   # ... the proxy container
   secrets-certs-proxy:
+  # ... the mitm container
+  secrets-certs-mitm:
 
   # Crowd server storage
   crowd-data:
@@ -46,9 +48,52 @@ services:
       - "secrets-certs-ca-private:/secrets/certs/ca-private:rw"
       - "secrets-certs-ca-shared:/secrets/certs/ca-shared:rw"
       - "secrets-certs-proxy:/secrets/certs/proxy:rw"
+      - "secrets-certs-mitm:/secrets/certs/mitm:rw"
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.6"
+
+  mitm:
+    image: mitmproxy/mitmproxy:latest
+    hostname: mitm.auth-demo.docker
+    environment:
+      REQUESTS_CA_BUNDLE: "/etc/ssl/certs/ca-certificates.crt"
+      SSL_CERT_FILE: "/etc/ssl/certs/ca-certificates.crt"
+    entrypoint: ["/bin/bash", "/opt/mitm/entrypoint-install-cacerts-mitm.sh"]
+    command:
+      - "mitmweb"
+      # Tell MITM Proxy to trust our CA for upstream services
+      - "--set"
+      - "ssl_verify_upstream_trusted_confdir=/etc/ssl/certs/"
+      # Tell the MITM web UI to respond to the IP address inside of the docker network
+      # instead of "127.0.0.1:8081" (no need to expose the port on the host)
+      # NOTE: This does not change the actual listening port, it only defines
+      #       the "hostname" (must be an IP) that the UI responds to
+      #       (instead of forwarding the request an upstream server).
+      # NOTE: "ENV_IP_PREFIX" is a feature of the auth-demo environment (defined in .env)--just a static IP.
+      - "--set"
+      - "web_host=${ENV_IP_PREFIX}.9"
+      # Point at our custom CA cert/key for issuing MITM certs
+      - "--set"
+      - "confdir=/secrets/certs/mitm/"
+    security_opt:
+      # Disable SElinux for volume mounts (since we're using a host mount)
+      - "label=disable"
+    volumes:
+      - "secrets-certs-ca-shared:/secrets/certs/ca-shared:ro"
+      # Grants MITM Proxy access to a copy of our CA private key
+      - "secrets-certs-mitm:/secrets/certs/mitm:rw"
+      - "./mitm:/opt/mitm:ro"
+    networks:
+      network:
+        # Set a static IP (a convention of the auth-demo environment)
+        # NOTE: "ENV_IP_PREFIX" is a feature of the auth-demo environment.
+        #       It's just an arbitrary hard-coded IP rnage that auth-demo users can tweak to avoid collisions.
+        ipv4_address: "${ENV_IP_PREFIX}.9"
+    # Wait for the secrets container to complete before starting
+    depends_on:
+      secrets:
+        condition: service_completed_successfully
 
   proxy:
     hostname: proxy.auth-demo.docker
@@ -169,9 +214,17 @@ services:
       # "javax.net.ssl.trustStore":
       #   Enable trust of our our self-signed CA
       #   (not technically necessary at the time of this writing)
+      # "http.proxy":
+      #   Add outbound proxy settings for MITM Proxy
       JVM_SUPPORT_RECOMMENDED_ARGS: >-
         -Djavax.net.ssl.trustStore=/secrets/certs/ca-shared/cacerts.jks
         -Djavax.net.ssl.trustStorePassword=changeit
+        -Dhttp.proxyHost=mitm.auth-demo.docker
+        -Dhttp.proxyPort=8080
+        -Dhttps.proxyHost=mitm.auth-demo.docker
+        -Dhttps.proxyPort=8080
+        -Dhttp.nonProxyHosts=localhost
+
     security_opt:
       # Disable SElinux for volume mounts (since we're using a host mount)
       - "label=disable"
