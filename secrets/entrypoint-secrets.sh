@@ -75,6 +75,8 @@ write_value "crowd-admin" /secrets/crowd/admin_username
 generate_password /secrets/crowd/admin_password
 write_value "bitbucket-admin" /secrets/bitbucket/admin_username
 generate_password /secrets/bitbucket/admin_password
+write_value "jira-admin" /secrets/jira/admin_username
+generate_password /secrets/jira/admin_password
 write_value "demo-bitbucket" /secrets/crowd-bitbucket/app_connector_name
 generate_password /secrets/crowd-bitbucket/app_connector_password
 write_value "ldap-bind" /secrets/ldap-bind/bind_username

@@ -14,6 +14,8 @@ volumes:
   secrets-bitbucket:
   # ... secrets shared between bitbucket and crowd containers
   secrets-crowd-bitbucket:
+  # ... the jira container
+  secrets-jira:
   # ... the certificate authority (private key(s) for CA)
   secrets-certs-ca-private:
   # ... the certificate authority cert(s)
@@ -25,6 +27,8 @@ volumes:
   crowd-data:
   # Bitbucket server storage
   bitbucket-data:
+  # Jira server storage
+  jira-data:
 
 services:
 
@@ -43,6 +47,7 @@ services:
       - "secrets-crowd:/secrets/crowd:rw"
       - "secrets-bitbucket:/secrets/bitbucket:rw"
       - "secrets-crowd-bitbucket:/secrets/crowd-bitbucket:rw"
+      - "secrets-jira:/secrets/jira:rw"
       - "secrets-certs-ca-private:/secrets/certs/ca-private:rw"
       - "secrets-certs-ca-shared:/secrets/certs/ca-shared:rw"
       - "secrets-certs-proxy:/secrets/certs/proxy:rw"
@@ -181,6 +186,26 @@ services:
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.3"
+    depends_on:
+      secrets:
+        condition: service_completed_successfully
+
+  jira:
+    hostname: jira.auth-demo.docker
+    image: atlassian/jira-software:9.3.2
+    environment:
+      ATL_PROXY_NAME: "jira.proxy.auth-demo.docker"
+      ATL_PROXY_PORT: "443"
+      ATL_TOMCAT_SCHEME: "https"
+      ATL_TOMCAT_SECURE: "true"
+    security_opt:
+      # Disable SElinux for volume mounts (since we're using a host mount)
+      - "label=disable"
+    volumes:
+      - "jira-data:/var/atlassian/application-data/jira:rw"
+    networks:
+      network:
+        ipv4_address: "${ENV_IP_PREFIX}.9"
     depends_on:
       secrets:
         condition: service_completed_successfully

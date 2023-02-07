@@ -37,3 +37,8 @@ echo "[ Crowd/Bitbucket App Connector ]"
 echo "name: $(cat /secrets/crowd-bitbucket/app_connector_name)"
 echo "pass: $(cat /secrets/crowd-bitbucket/app_connector_password)"
 echo ""
+
+echo "[ Jira Admin ]"
+echo "user: $(cat /secrets/jira/admin_username)"
+echo "pass: $(cat /secrets/jira/admin_password)"
+echo ""
