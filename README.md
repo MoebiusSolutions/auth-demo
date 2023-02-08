@@ -14,9 +14,9 @@ It contains:
 * A reverse proxy with PKI certs for all services
 * Many example setup procedures
 
-## Getting Started
+## Start Here
 
-[Getting Started](Getting-Started.md)
+[Getting Started](docs/Getting-Started.md)
 
 ## Documentation
 
@@ -51,7 +51,7 @@ Other Docs
 * [Manual Actions in LDAP UI](docs/Manual-Actions-in-LDAP-UI.md)
 * [Manual Actions in LDAP CLI](docs/Manual-Actions-in-LDAP-CLI.md)
 * [Resolving "Found an Attribute element with duplicated Name" SAML Error in Bitbucket](docs/Resolving-Found-an-Attribute-element-with-duplicated-Name-SAML-Error-in-Bitbucket.md)
-* [The OpenLDAP Admin User is Not Listed in LDAP Queries](docs/The-OpenLDAP-Admin-User-is-Not-Listed-in-LDAP-Queries.md)
+* [The OpenLDAP Admin User is Not Listed in LDAP Queries](docs/The-OpenLDAP-Admin-User-is-Not-Listed.md)
 * [Fixing SAML SSO Logout](docs/Fixing-SAML-SSO-Logout.md)
 
 ## Service Links
