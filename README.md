@@ -32,6 +32,8 @@ Demonstration Procedures
 
 * [Demonstrating OAuth from Bitbucket to Azure Active Directory](docs/Demonstrating-OAuth-from-Bitbucket-to-Azure-Active-Directory.md)
 
+* [Demonstrating Group Sync and JIT User Provisioning in Bitbucket via SAML to Azure AD](docs/Demonstrating-Group-Sync-and-JIT-User-Provisioning-in-Bitbucket-via-SAML-to-Azure-AD.md)
+
 
 Minor Task Procedures (used by the above procedures)
 
