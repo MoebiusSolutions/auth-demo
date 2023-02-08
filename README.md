@@ -30,9 +30,18 @@ Demonstration Procedures
    
    * [![](https://www.moesol.com/plantuml/png/TP71JiCm44Jl_eeL9pXKb6jLLMhB1L54r794GewzRLP9R6DlAF3rs6dJD5IzETgPqPj9KB92gEKtF8p7i2VDXH1IiVMmy7OVq8CCa1-UmadFfCX9m-0AjtgSPrBNP9Acqj9zD3JGt2o8yqQLoEzcciysyvSLRBBfVJwxQMExwz3qZ3-gihBiFK-wDvN7wy2pZ80wNLLw34wl3aq2xHY5EBQ1qQmdcC2o8bL2PNUnJjumMtCIJaVdmZLgyeg1BNIai8rxjTRpy8vq0fctNwGHcdHH7ZKQ9ba5qKcIFC5536ksvEjBwHbC7zokmxR4-0kC1j-ZdPQ_KdUDdmq6ZXPdGIg58S3jdhWuPBwbp3jnCYHtksrFkFEsSL1ZdQCF1Rbs1Cc5zVGhcU9-hU6osd_ZbPqpZo6MFn0gQpX-_040)](https://www.moesol.com/plantuml/png/TP71Ri8m44Jl-OeLf_Q0UaS82UYbAbKZwB5IvTXRiafYk-jDKVlrjGCXf8YRevqPlPaeBOvXnUuGa445A8xFp2iMqkIL5V2btpmkSsKQiabJ6-K_MXff9YkIejKLohkT5ulTycK3ktp-K2mcNMn_7PkUyKVNJbM3vyaCfkfq7NdM4T2agqwFqUdLeqsWFMEMdTh0T34Gp61TawwWTljOfsX5d3qBvzDBuHODiHOG1pqfVCQzEkjbU4ywWvpTDnc4Dbqqeq4hfEgGzP8aJt0HmzbFukPQUW4p17VhYAim_W9hW0Uqy_8twcxngyKWqU8TAAqn1BWxa9J7pBUKUP-T3SdTRJiGxjcr7Xfi2kHGakz6K58wfbyb5FVh3DVL_Xjlx9mpXbZ-IAYTbVZn1m00)
 
+* [Demonstrating OAuth from Bitbucket to Azure Active Directory](Demonstrating-OAuth-from-Bitbucket-to-Azure-Active-Directory.md)
+
 
 Minor Task Procedures (used by the above procedures)
 
+* Azure
+    * [Setup a Account and Tenant in Azure](docs/Azure_Setup-a-Account-and-Tenant-in-Azure.md)
+    * [Defined Bitbucket OAuth Client Secret in Azure AD](docs/Azure_Defined-Bitbucket-OAuth-Client-Secret-in-Azure-AD.md)
+    * [Exposed Azure AD to Bitbucket through OAuth](docs/Azure_Exposed-Azure-AD-to-Bitbucket-through-OAuth.md)
+    * [Added OAuth Redirect URL to Azure AD for Bitbucket](docs/Azure_Added-OAuth-Redirect-URL-to-Azure-AD-for-Bitbucket.md)
+    * [Added OAuth Token Claims to Azure AD for Bitbucket](docs/Azure_Added-OAuth-Token-Claims-to-Azure-AD-for-Bitbucket.md)
+    * [Defined User and Group in Azure AD for Bitbucket OAuth](Azure_Defined-User-and-Group-in-Azure-AD-for-Bitbucket-OAuth.md)
 * Keycloak
     * [Define an "SSO" Realm in Keycloak](docs/Keycloak_Define-an-SSO-Realm-in-Keycloak.md)
     * [Add LDAP Connecton to Keycloak](docs/Keycloak_Add-LDAP-Connecton-to-Keycloak.md)
@@ -44,6 +53,8 @@ Minor Task Procedures (used by the above procedures)
     * [Initialize Bitbucket](docs/Bitbucket_Initialize-Bitbucket.md)
     * [Add Crowd Directory to Bitbucket](docs/Bitbucket_Add-Crowd-Directory-to-Bitbucket.md)
     * [Grant LDAP Group Access to Bitbucket](docs/Bitbucket_Grant-LDAP-Group-Access-to-Bitbucket.md)
+    * [Added Azure AD OAuth to Bitbucket](docs/Bitbucket_Added-Azure-AD-OAuth-to-Bitbucket.md)
+    * [Defined User in Bitbucket for Azure AD OAuth](docs/Bitbucket_Defined-User-in-Bitbucket-for-Azure-AD-OAuth.md)
 
 Other Docs
 
