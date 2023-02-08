@@ -33,6 +33,24 @@ function generate_memorable_password() {
         >> "$PW_FILE"
 }
 
+# Generates an password containing upper/lower/number/special chars
+# (to meet complexity requirements).
+function generate_complex_password() {
+    PW_FILE="$1"
+    shift
+
+    if [[ -f "$PW_FILE" ]]; then
+        echo "[ Password File Already Exists ]: $PW_FILE" 1>&2
+        return
+    fi
+    echo "[ Generating Password ]: $PW_FILE" 1>&2
+    set +e
+    pwgen -cny 20 -1 | tr -d '\n' > "$PW_FILE"
+    set -e
+}
+
+# Generates an alphanumeric password
+# (which is generally perferred, because its the most compatible with automation).
 function generate_password() {
     PW_FILE="$1"
     shift
@@ -81,6 +99,8 @@ write_value "demo-bitbucket" /secrets/crowd-bitbucket/app_connector_name
 generate_password /secrets/crowd-bitbucket/app_connector_password
 write_value "ldap-bind" /secrets/ldap-bind/bind_username
 generate_password /secrets/ldap-bind/bind_password
+write_value "admin" /secrets/artifactory/admin_username
+generate_complex_password /secrets/artifactory/admin_password
 
 # Load variables used in template files
 export LDAP_ADMIN_PASSWORD="$(read_value "/secrets/ldap/admin_password")"

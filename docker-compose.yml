@@ -2,6 +2,12 @@ version: '3'
 
 volumes:
   # (Auto-generated) secrets for...
+  # ... the proxy container
+  secrets-certs-proxy:
+  # ... the certificate authority (private key(s) for CA)
+  secrets-certs-ca-private:
+  # ... the certificate authority cert(s)
+  secrets-certs-ca-shared:
   # ... the ldap container
   secrets-ldap:
   # ... read-only (bind) credentials for ldap
@@ -16,12 +22,8 @@ volumes:
   secrets-crowd-bitbucket:
   # ... the jira container
   secrets-jira:
-  # ... the certificate authority (private key(s) for CA)
-  secrets-certs-ca-private:
-  # ... the certificate authority cert(s)
-  secrets-certs-ca-shared:
-  # ... the proxy container
-  secrets-certs-proxy:
+  # ... the artifactory container
+  secrets-artifactory:
 
   # Crowd server storage
   crowd-data:
@@ -29,6 +31,8 @@ volumes:
   bitbucket-data:
   # Jira server storage
   jira-data:
+  # Artifactory server storage
+  artifactory-data:
 
 services:
 
@@ -41,6 +45,9 @@ services:
       - "label=disable"
     volumes:
       - "./ldap:/opt/ldap-init:ro"
+      - "secrets-certs-ca-private:/secrets/certs/ca-private:rw"
+      - "secrets-certs-ca-shared:/secrets/certs/ca-shared:rw"
+      - "secrets-certs-proxy:/secrets/certs/proxy:rw"
       - "secrets-ldap:/secrets/ldap:rw"
       - "secrets-ldap-bind:/secrets/ldap-bind:rw"
       - "secrets-keycloak:/secrets/keycloak:rw"
@@ -48,9 +55,7 @@ services:
       - "secrets-bitbucket:/secrets/bitbucket:rw"
       - "secrets-crowd-bitbucket:/secrets/crowd-bitbucket:rw"
       - "secrets-jira:/secrets/jira:rw"
-      - "secrets-certs-ca-private:/secrets/certs/ca-private:rw"
-      - "secrets-certs-ca-shared:/secrets/certs/ca-shared:rw"
-      - "secrets-certs-proxy:/secrets/certs/proxy:rw"
+      - "secrets-artifactory:/secrets/artifactory:rw"
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.6"
@@ -206,6 +211,22 @@ services:
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.9"
+    depends_on:
+      secrets:
+        condition: service_completed_successfully
+
+  artifactory:
+    hostname: artifactory.auth-demo.docker
+    # The "Pro" version is required for SAML/OAuth support
+    image: releases-docker.jfrog.io/jfrog/artifactory-pro:7.49.6
+    security_opt:
+      # Disable SElinux for volume mounts (since we're using a host mount)
+      - "label=disable"
+    volumes:
+      - "artifactory-data:/var/opt/jfrog/artifactory:rw"
+    networks:
+      network:
+        ipv4_address: "${ENV_IP_PREFIX}.10"
     depends_on:
       secrets:
         condition: service_completed_successfully

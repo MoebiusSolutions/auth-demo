@@ -144,6 +144,7 @@ create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "keycloak.p
 create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "crowd.proxy.auth-demo.docker"
 create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "bitbucket.proxy.auth-demo.docker"
 create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "jira.proxy.auth-demo.docker"
+create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "artifactory.proxy.auth-demo.docker"
 
 # Share the CA cert with all machines
 cp "${TARGET_DIR}/ca-private/root-ca.crt" "${TARGET_DIR}/ca-shared/root-ca.crt"

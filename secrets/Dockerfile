@@ -10,7 +10,9 @@ RUN set -x && \
         # Provides slappasswd, which is used for encoding ldap passwords
         slapd \
         # Provides the JDK system certifiate store (which gives us a store to append our self-signed CA to)
-        openjdk-11-jdk-headless && \
+        openjdk-11-jdk-headless \
+        # Provides pwgen, which is used to generate passwords to meet complexity requirements
+        pwgen && \
     rm -rf /var/lib/apt/lists/*
 
 ADD --chown=root:root entrypoint-secrets.sh /opt/secrets/
