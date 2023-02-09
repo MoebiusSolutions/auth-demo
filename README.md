@@ -36,7 +36,7 @@ Demonstration Procedures
 
 * [Demonstrating Group Sync and JIT User Provisioning in Jira via SAML to Azure AD](docs/Demonstrating-Group-Sync-and-JIT-User-Provisioning-in-Jira-via-SAML-to-Azure-AD.md)
 
-* [Demonstrating Group Sync and JIT User Provisioning in Artifactory via SAML to Azure AD](Demonstrating-Group-Sync-and-JIT-User-Provisioning-in-Artifactory-via-SAML-to-Azure-AD.md)
+* [Demonstrating Group Sync and JIT User Provisioning in Artifactory via SAML to Azure AD](docs/Demonstrating-Group-Sync-and-JIT-User-Provisioning-in-Artifactory-via-SAML-to-Azure-AD.md)
 
 Minor Task Procedures (used by the above procedures)
 
@@ -47,7 +47,7 @@ Minor Task Procedures (used by the above procedures)
     * [Added OAuth Redirect URL to Azure AD for Bitbucket](docs/Azure_Added-OAuth-Redirect-URL-to-Azure-AD-for-Bitbucket.md)
     * [Added OAuth Token Claims to Azure AD for Bitbucket](docs/Azure_Added-OAuth-Token-Claims-to-Azure-AD-for-Bitbucket.md)
     * [Defined User and Group in Azure AD for Bitbucket OAuth](docs/Azure_Defined-User-and-Group-in-Azure-AD-for-Bitbucket-OAuth.md)
-[Define Standard Users and Groups in Azure AD](Azure_Define-Standard-Users-and-Groups-in-Azure-AD.md)
+    * [Define Standard Users and Groups in Azure AD](docs/Azure_Define-Standard-Users-and-Groups-in-Azure-AD.md)
 * Keycloak
     * [Define an "SSO" Realm in Keycloak](docs/Keycloak_Define-an-SSO-Realm-in-Keycloak.md)
     * [Add LDAP Connecton to Keycloak](docs/Keycloak_Add-LDAP-Connecton-to-Keycloak.md)
