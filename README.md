@@ -34,6 +34,9 @@ Demonstration Procedures
 
 * [Demonstrating Group Sync and JIT User Provisioning in Bitbucket via SAML to Azure AD](docs/Demonstrating-Group-Sync-and-JIT-User-Provisioning-in-Bitbucket-via-SAML-to-Azure-AD.md)
 
+* [Demonstrating Group Sync and JIT User Provisioning in Jira via SAML to Azure AD](docs/Demonstrating-Group-Sync-and-JIT-User-Provisioning-in-Jira-via-SAML-to-Azure-AD.md)
+
+* [Demonstrating Group Sync and JIT User Provisioning in Artifactory via SAML to Azure AD](Demonstrating-Group-Sync-and-JIT-User-Provisioning-in-Artifactory-via-SAML-to-Azure-AD.md)
 
 Minor Task Procedures (used by the above procedures)
 
@@ -43,7 +46,8 @@ Minor Task Procedures (used by the above procedures)
     * [Exposed Azure AD to Bitbucket through OAuth](docs/Azure_Exposed-Azure-AD-to-Bitbucket-through-OAuth.md)
     * [Added OAuth Redirect URL to Azure AD for Bitbucket](docs/Azure_Added-OAuth-Redirect-URL-to-Azure-AD-for-Bitbucket.md)
     * [Added OAuth Token Claims to Azure AD for Bitbucket](docs/Azure_Added-OAuth-Token-Claims-to-Azure-AD-for-Bitbucket.md)
-    * [Defined User and Group in Azure AD for Bitbucket OAuth](Azure_Defined-User-and-Group-in-Azure-AD-for-Bitbucket-OAuth.md)
+    * [Defined User and Group in Azure AD for Bitbucket OAuth](docs/Azure_Defined-User-and-Group-in-Azure-AD-for-Bitbucket-OAuth.md)
+[Define Standard Users and Groups in Azure AD](Azure_Define-Standard-Users-and-Groups-in-Azure-AD.md)
 * Keycloak
     * [Define an "SSO" Realm in Keycloak](docs/Keycloak_Define-an-SSO-Realm-in-Keycloak.md)
     * [Add LDAP Connecton to Keycloak](docs/Keycloak_Add-LDAP-Connecton-to-Keycloak.md)
@@ -57,6 +61,8 @@ Minor Task Procedures (used by the above procedures)
     * [Grant LDAP Group Access to Bitbucket](docs/Bitbucket_Grant-LDAP-Group-Access-to-Bitbucket.md)
     * [Added Azure AD OAuth to Bitbucket](docs/Bitbucket_Added-Azure-AD-OAuth-to-Bitbucket.md)
     * [Defined User in Bitbucket for Azure AD OAuth](docs/Bitbucket_Defined-User-in-Bitbucket-for-Azure-AD-OAuth.md)
+* Artifactory
+    * [Initialize Artifactory](docs/Artifactory_Initialize-Artifactory.md)
 
 Other Docs
 
