@@ -1,2 +1,6 @@
 # Docker env file
 /.env
+
+# An export of the CA cert that is created as a side
+# effect of the setup procedures
+/root-ca.crt
