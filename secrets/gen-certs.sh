@@ -132,19 +132,22 @@ EOF
     fi
 }
 
-if [[ $# != 1 ]]; then
+if [[ $# != 2 ]]; then
     show_usage_and_exit
 fi
+ENV_DOMAIN="$1"
+shift
 TARGET_DIR="$1"
+shift
 
 # Create certs
 create_root_cert "${TARGET_DIR}/ca-private"
-create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "ldap-ui.proxy.auth-demo.docker"
-create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "keycloak.proxy.auth-demo.docker"
-create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "crowd.proxy.auth-demo.docker"
-create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "bitbucket.proxy.auth-demo.docker"
-create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "jira.proxy.auth-demo.docker"
-create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "artifactory.proxy.auth-demo.docker"
+create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "ldap-ui.proxy.${ENV_DOMAIN}"
+create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "keycloak.proxy.${ENV_DOMAIN}"
+create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "crowd.proxy.${ENV_DOMAIN}"
+create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "bitbucket.proxy.${ENV_DOMAIN}"
+create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "jira.proxy.${ENV_DOMAIN}"
+create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "artifactory.proxy.${ENV_DOMAIN}"
 
 # Share the CA cert with all machines
 cp "${TARGET_DIR}/ca-private/root-ca.crt" "${TARGET_DIR}/ca-shared/root-ca.crt"

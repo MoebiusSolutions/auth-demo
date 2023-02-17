@@ -38,8 +38,10 @@ services:
 
   # Container used to auto-generate secrets (any time the volumes are wiped)
   secrets:
-    hostname: secrets.auth-demo.docker
+    hostname: "secrets.${ENV_DOMAIN}"
     build: secrets
+    environment:
+      ENV_DOMAIN: "$ENV_DOMAIN"
     security_opt:
       # Disable SElinux for volume mounts (since we're using a host mount)
       - "label=disable"
@@ -61,8 +63,10 @@ services:
         ipv4_address: "${ENV_IP_PREFIX}.6"
 
   proxy:
-    hostname: proxy.auth-demo.docker
+    hostname: "proxy.${ENV_DOMAIN}"
     image: haproxy:2.7.1
+    environment:
+      ENV_DOMAIN: "$ENV_DOMAIN"
     security_opt:
       # Disable SElinux for volume mounts (since we're using a host mount)
       - "label=disable"
@@ -76,16 +80,16 @@ services:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.8"
         aliases:
-          - ldap-ui.proxy.auth-demo.docker
-          - keycloak.proxy.auth-demo.docker
-          - crowd.proxy.auth-demo.docker
-          - bitbucket.proxy.auth-demo.docker
+          - ldap-ui.proxy.${ENV_DOMAIN}
+          - keycloak.proxy.${ENV_DOMAIN}
+          - crowd.proxy.${ENV_DOMAIN}
+          - bitbucket.proxy.${ENV_DOMAIN}
     depends_on:
       secrets:
         condition: service_completed_successfully
 
   ldap:
-    hostname: ldap.auth-demo.docker
+    hostname: "ldap.${ENV_DOMAIN}"
     image: osixia/openldap:1.5.0
     environment:
       LDAP_ORGANISATION: "Example Inc."
@@ -114,12 +118,12 @@ services:
         condition: service_completed_successfully
 
   ldap-ui:
-    hostname: ldap-ui.auth-demo.docker
+    hostname: "ldap-ui.${ENV_DOMAIN}"
     # NOTE: There isn't a tagged version near as new as ":latest", so I'm leaving it as ":latest".
     #       That being said, this base image looks like abandonware (2 years old).
     image: osixia/phpldapadmin:latest
     environment:
-      PHPLDAPADMIN_LDAP_HOSTS: "ldap.auth-demo.docker"
+      PHPLDAPADMIN_LDAP_HOSTS: "ldap.${ENV_DOMAIN}"
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.5"
@@ -128,7 +132,7 @@ services:
         condition: service_completed_successfully
 
   keycloak:
-    hostname: keycloak.auth-demo.docker
+    hostname: "keycloak.${ENV_DOMAIN}"
     image: jboss/keycloak:16.1.1
     environment:
       KEYCLOAK_USER_FILE: "/secrets/keycloak/admin_username"
@@ -148,7 +152,7 @@ services:
         condition: service_completed_successfully
 
   crowd:
-    hostname: crowd.auth-demo.docker
+    hostname: "crowd.${ENV_DOMAIN}"
     image: atlassian/crowd:5.1.1
     environment:
       CROWD_DB_URL: jdbc:postgresql://crowd-db:5432/crowd
@@ -169,10 +173,10 @@ services:
         condition: service_completed_successfully
 
   bitbucket:
-    hostname: bitbucket.auth-demo.docker
+    hostname: "bitbucket.${ENV_DOMAIN}"
     image: atlassian/bitbucket:8.7.0
     environment:
-      SERVER_PROXY_NAME: "bitbucket.proxy.auth-demo.docker"
+      SERVER_PROXY_NAME: "bitbucket.proxy.${ENV_DOMAIN}"
       SERVER_PROXY_PORT: "443"
       SERVER_SCHEME: "https"
       SERVER_SECURE: "true"
@@ -196,10 +200,10 @@ services:
         condition: service_completed_successfully
 
   jira:
-    hostname: jira.auth-demo.docker
+    hostname: "jira.${ENV_DOMAIN}"
     image: atlassian/jira-software:9.3.2
     environment:
-      ATL_PROXY_NAME: "jira.proxy.auth-demo.docker"
+      ATL_PROXY_NAME: "jira.proxy.${ENV_DOMAIN}"
       ATL_PROXY_PORT: "443"
       ATL_TOMCAT_SCHEME: "https"
       ATL_TOMCAT_SECURE: "true"
@@ -216,7 +220,7 @@ services:
         condition: service_completed_successfully
 
   artifactory:
-    hostname: artifactory.auth-demo.docker
+    hostname: "artifactory.${ENV_DOMAIN}"
     # The "Pro" version is required for SAML/OAuth support
     image: releases-docker.jfrog.io/jfrog/artifactory-pro:7.49.6
     security_opt:

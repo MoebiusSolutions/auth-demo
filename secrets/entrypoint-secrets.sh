@@ -84,6 +84,13 @@ function read_value() {
     head -n 1 "$TARGET_FILE" | tr -d '\n'
 }
 
+if [[ "$ENV_DOMAIN" == "" ]]; then
+    echo "" >&2
+    echo "ERROR: ENV_DOMAIN must be specified" >&2
+    echo "" >&2
+    exit 1
+fi
+
 # Generate usernames/passwords
 generate_password /secrets/ldap/admin_password
 generate_password /secrets/ldap/pswanson_password
@@ -119,6 +126,6 @@ echo "[ Generating ]: $PW_FILE" 1>&2
 envsubst < /opt/ldap-init/ldap-init.ldif.bashtemplate > "$PW_FILE"
 
 # Generate certificates
-"$SCRIPT_DIR/gen-certs.sh" "/secrets/certs"
+"$SCRIPT_DIR/gen-certs.sh" "$ENV_DOMAIN" "/secrets/certs"
 
 echo "[ SUCCESS (exiting) ]" 1>&2
