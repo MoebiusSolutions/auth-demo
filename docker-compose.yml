@@ -176,7 +176,7 @@ services:
     hostname: "bitbucket.${ENV_DOMAIN}"
     image: atlassian/bitbucket:8.7.0
     environment:
-      SERVER_PROXY_NAME: "bitbucket.proxy.${ENV_DOMAIN}"
+      SERVER_PROXY_NAME: "proxy.${ENV_DOMAIN}"
       SERVER_PROXY_PORT: "443"
       SERVER_SCHEME: "https"
       SERVER_SECURE: "true"
@@ -190,6 +190,7 @@ services:
       # Disable SElinux for volume mounts (since we're using a host mount)
       - "label=disable"
     volumes:
+      - "./bitbucket/bitbucket.properties:/var/atlassian/application-data/bitbucket/shared/bitbucket.properties:ro"
       - "bitbucket-data:/var/atlassian/application-data/bitbucket:rw"
       - "secrets-certs-ca-shared:/secrets/certs/ca-shared:ro"
     networks:
@@ -203,7 +204,7 @@ services:
     hostname: "jira.${ENV_DOMAIN}"
     image: atlassian/jira-software:9.3.2
     environment:
-      ATL_PROXY_NAME: "jira.proxy.${ENV_DOMAIN}"
+      ATL_PROXY_NAME: "proxy.${ENV_DOMAIN}"
       ATL_PROXY_PORT: "443"
       ATL_TOMCAT_SCHEME: "https"
       ATL_TOMCAT_SECURE: "true"
@@ -211,6 +212,7 @@ services:
       # Disable SElinux for volume mounts (since we're using a host mount)
       - "label=disable"
     volumes:
+      - "./jira/server.xml:/opt/atlassian/jira/conf/server.xml:ro"
       - "jira-data:/var/atlassian/application-data/jira:rw"
     networks:
       network:

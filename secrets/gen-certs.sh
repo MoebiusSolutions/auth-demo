@@ -142,6 +142,7 @@ shift
 
 # Create certs
 create_root_cert "${TARGET_DIR}/ca-private"
+create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "proxy.${ENV_DOMAIN}"
 create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "ldap-ui.proxy.${ENV_DOMAIN}"
 create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "keycloak.proxy.${ENV_DOMAIN}"
 create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "crowd.proxy.${ENV_DOMAIN}"
