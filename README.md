@@ -38,6 +38,8 @@ Demonstration Procedures
 
 * [Demonstrating Group Sync and JIT User Provisioning in Artifactory via SAML to Azure AD](docs/Demonstrating-Group-Sync-and-JIT-User-Provisioning-in-Artifactory-via-SAML-to-Azure-AD.md)
 
+* [Demonstrating Proxying Single Hostname via Context Path](docs/Demonstrating-Proxying-Single-Hostname-via-Context-Path.md)
+
 Minor Task Procedures (used by the above procedures)
 
 * Azure
