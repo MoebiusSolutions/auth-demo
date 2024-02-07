@@ -40,6 +40,8 @@ Demonstration Procedures
 
 * [Demonstrating Proxying Single Hostname via Context Path](docs/Demonstrating-Proxying-Single-Hostname-via-Context-Path.md)
 
+* [Demonstrate Artifactory Authentication through SAML to Keycloak](docs/Demonstrate-Artifactory-Authentication-through-SAML-to-Keycloak.md)
+
 Minor Task Procedures (used by the above procedures)
 
 * Azure
@@ -53,6 +55,7 @@ Minor Task Procedures (used by the above procedures)
 * Keycloak
     * [Define an "SSO" Realm in Keycloak](docs/Keycloak_Define-an-SSO-Realm-in-Keycloak.md)
     * [Add LDAP Connecton to Keycloak](docs/Keycloak_Add-LDAP-Connecton-to-Keycloak.md)
+    * [Define an Artifactory SAML Service Provider in Keycloak](docs/Keycloak_Define-an-Artifactory-SAML-Service-Provider-in-Keycloak.md)
 * Crowd
     * [Initialize Crowd](docs/Crowd_Initialize-Crowd.md)
     * [Add LDAP Connector to Crowd](docs/Crowd_Add-LDAP-Connector-to-Crowd.md)
@@ -65,6 +68,7 @@ Minor Task Procedures (used by the above procedures)
     * [Defined User in Bitbucket for Azure AD OAuth](docs/Bitbucket_Defined-User-in-Bitbucket-for-Azure-AD-OAuth.md)
 * Artifactory
     * [Initialize Artifactory](docs/Artifactory_Initialize-Artifactory.md)
+    * [Configure Artifactory for SAML Auth to Keycloak](docs/Artifactory_Configure-Artifactory-for-SAML-Auth-to-Keycloak.md)
 
 Other Docs
 
