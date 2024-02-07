@@ -3,7 +3,7 @@
 ## Overview
 
 This is very similar to
-[Demonstrating Group Sync and JIT User Provisioning in Bitbucket via SAML to Azure AD](docs/Demonstrating-Group-Sync-and-JIT-User-Provisioning-in-Bitbucket-via-SAML-to-Azure-AD.md),
+[Demonstrating Group Sync and JIT User Provisioning in Bitbucket via SAML to Azure AD](Demonstrating-Group-Sync-and-JIT-User-Provisioning-in-Bitbucket-via-SAML-to-Azure-AD.md),
 so I am only covering the Artifactory-specific steps in this document.
 
 ## A Word About Group Membership via SAML Tokens

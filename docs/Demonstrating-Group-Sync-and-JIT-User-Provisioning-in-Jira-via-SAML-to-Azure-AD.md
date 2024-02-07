@@ -3,7 +3,7 @@
 ## Overview
 
 This is very similar to
-[Demonstrating Group Sync and JIT User Provisioning in Bitbucket via SAML to Azure AD](docs/Demonstrating-Group-Sync-and-JIT-User-Provisioning-in-Bitbucket-via-SAML-to-Azure-AD.md),
+[Demonstrating Group Sync and JIT User Provisioning in Bitbucket via SAML to Azure AD](Demonstrating-Group-Sync-and-JIT-User-Provisioning-in-Bitbucket-via-SAML-to-Azure-AD.md),
 so I am only covering only the aspects that differ from that procedure.
 
 ## Setup Standard Users and Groups in Azure AD

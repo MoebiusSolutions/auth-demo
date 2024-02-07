@@ -2,7 +2,7 @@
 
 ## Setup Keycloak/OpenLDAP
 
-[Demonstrate LDAP Connection Between Keycloak and OpenLDAP](docs/Demonstrate-LDAP-Connection-Between-Keycloak-and-OpenLDAP.md)
+[Demonstrate LDAP Connection Between Keycloak and OpenLDAP](Demonstrate-LDAP-Connection-Between-Keycloak-and-OpenLDAP.md)
 
 ## Provision Crowd
 
@@ -26,7 +26,7 @@
 
 ## Grant Keycloak LDAP Group Access to Bitbucket
 
-[Grant LDAP Group Access to Bitbucket](docs/Bitbucket_Grant-LDAP-Group-Access-to-Bitbucket.md)
+[Grant LDAP Group Access to Bitbucket](Bitbucket_Grant-LDAP-Group-Access-to-Bitbucket.md)
 
 ## Verify Ability to Login as LDAP Developer
 

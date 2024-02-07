@@ -24,7 +24,7 @@ it just makes auditing of groups via Bitbucket a bit combersome.
 
 ## Initialized Bitbucket
 
-Followed [Initialize Bitbucket](docs/Bitbucket_Initialize-Bitbucket.md)
+Followed [Initialize Bitbucket](Bitbucket_Initialize-Bitbucket.md)
 
 
 ## Azure AD "App Registration" vs "Enterprise Application"
