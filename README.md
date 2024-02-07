@@ -40,7 +40,7 @@ Demonstration Procedures
 
 * [Demonstrating Proxying Single Hostname via Context Path](docs/Demonstrating-Proxying-Single-Hostname-via-Context-Path.md)
 
-* [Demonstrate Artifactory Authentication through SAML to Keycloak](docs/Demonstrate-Artifactory-Authentication-through-SAML-to-Keycloak.md)
+* [Demonstrating Artifactory Authentication through SAML to Keycloak](docs/Demonstrating-Artifactory-Authentication-through-SAML-to-Keycloak.md)
 
 Minor Task Procedures (used by the above procedures)
 

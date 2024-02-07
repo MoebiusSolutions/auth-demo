@@ -1,4 +1,4 @@
-# Demonstrate Artifactory Authentication through SAML to Keycloak
+# Demonstrating Artifactory Authentication through SAML to Keycloak
 
 ## Initialize Keycloak and OpenLDAP
 
