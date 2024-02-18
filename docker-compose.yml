@@ -24,7 +24,13 @@ volumes:
   secrets-jira:
   # ... the artifactory container
   secrets-artifactory:
+  # ... the cas-proxy container
+  secrets-cas-proxy:
 
+  # Keycloak server storage
+  keycloak-data:
+  # Keycloak storage for custom providers
+  keycloak-providers:
   # Crowd server storage
   crowd-data:
   # Bitbucket server storage
@@ -58,6 +64,7 @@ services:
       - "secrets-crowd-bitbucket:/secrets/crowd-bitbucket:rw"
       - "secrets-jira:/secrets/jira:rw"
       - "secrets-artifactory:/secrets/artifactory:rw"
+      - "secrets-cas-proxy:/secrets/certs/cas-proxy:rw"
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.6"
@@ -84,6 +91,30 @@ services:
           - keycloak.proxy.${ENV_DOMAIN}
           - crowd.proxy.${ENV_DOMAIN}
           - bitbucket.proxy.${ENV_DOMAIN}
+    depends_on:
+      secrets:
+        condition: service_completed_successfully
+
+  cas-proxy:
+    hostname: "cas-proxy.${ENV_DOMAIN}"
+    #image: "httpd:2.4.58"
+    build: cas-proxy
+    environment:
+      ENV_DOMAIN: "$ENV_DOMAIN"
+    entrypoint: [ "/bin/bash", "/auth-demo-entrypoint.sh" ]
+    security_opt:
+      # Disable SElinux for volume mounts (since we're using a host mount)
+      - "label=disable"
+    expose:
+      - "443"
+    networks:
+      network:
+        ipv4_address: "${ENV_IP_PREFIX}.13"
+        aliases:
+          - "artifactory.cas.${ENV_DOMAIN}"
+    volumes:
+      - "secrets-cas-proxy:/secrets/certs/secrets-cas-proxy:ro"
+      - "secrets-certs-ca-shared:/secrets/certs/ca-shared:ro"
     depends_on:
       secrets:
         condition: service_completed_successfully
@@ -131,24 +162,53 @@ services:
       secrets:
         condition: service_completed_successfully
 
+  # NOTE: This container is only necessary because we are installing the CAS provider for Keycloak
+  keycloak-init:
+    hostname: "keycloak-init.${ENV_DOMAIN}"
+    build: keycloak-init
+    environment:
+      # NOTE: This version must be in sync with the keycloak container
+      KEYCLOAK_VERSION: "23.0.6"
+      KEYCLOAK_PROVIDERS_DIR: "/keycloak-providers"
+    volumes:
+      - "keycloak-providers:/keycloak-providers:rw"
+    networks:
+      network:
+        ipv4_address: "${ENV_IP_PREFIX}.12"
+
   keycloak:
     hostname: "keycloak.${ENV_DOMAIN}"
-    image: jboss/keycloak:16.1.1
+    # NOTE: This version must be in sync with the keycloak-init container
+    image: keycloak/keycloak:23.0.6
     environment:
-      KEYCLOAK_USER_FILE: "/secrets/keycloak/admin_username"
-      KEYCLOAK_PASSWORD_FILE: "/secrets/keycloak/admin_password"
-      PROXY_ADDRESS_FORWARDING: "true"
+      # NOTE: After upgrading from Keycloak v16 to v23, we have to explicitly
+      #       navigate to /auth/ to access the KeyCloak pages.
+      #       The default configuration variables also do not behave as expected.
+      #       See discussions:
+      #       * https://github.com/keycloak/keycloak/issues/14666
+      #       * https://github.com/keycloak/keycloak/discussions/10274
+      # NOTE: We upgraded Keycloak from v16 to v23 in order to support the CAS provider.
+      KC_HTTP_RELATIVE_PATH: "/auth"
+      KC_HOSTNAME_URL: "https://keycloak.proxy.${ENV_DOMAIN}/auth/"
+      KC_HOSTNAME_STRICT:  "false"
+      KC_HOSTNAME_ADMIN_URL: "https://keycloak.proxy.${ENV_DOMAIN}/auth/"
+      KC_PROXY: "edge"
+    entrypoint: [ "/bin/bash", "/auth-demo-entrypoint.sh" ]
     security_opt:
       # Disable SElinux for volume mounts (since we're using a host mount)
       - "label=disable"
-    # TODO: Consider mirror data dirs in the same way as atlassian services
     volumes:
+      - "./keycloak/entrypoint.sh:/auth-demo-entrypoint.sh:ro"
       - "secrets-keycloak:/secrets/keycloak:ro"
+      - "keycloak-data:/opt/keycloak/data:rw"
+      - "keycloak-providers:/opt/keycloak/providers:rw"
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.7"
     depends_on:
       secrets:
+        condition: service_completed_successfully
+      keycloak-init:
         condition: service_completed_successfully
 
   crowd:

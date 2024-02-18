@@ -119,10 +119,28 @@ EOF
             -out "${target_dir_machine}/${machine_fqdn}.crt" 
     fi
 
-    # Create folder for HAProxy-specific files
-    mkdir -p "${target_dir_machine}/haproxy"
+    if [[ -f "${target_dir_machine}/${machine_fqdn}.jks" ]]; then
+        echo "[Machine JKS Keystore Already Exists]: ${machine_fqdn}"
+    else
+        echo "[Creating a Machine JKS Keystore]: ${machine_fqdn}"
+        openssl pkcs12 -passout 'pass:changeit' -export \
+            -in "${target_dir_machine}/${machine_fqdn}.crt" \
+            -inkey "${target_dir_machine}/${machine_fqdn}.crt.key" \
+            -out "${target_dir_machine}/${machine_fqdn}.p12" \
+            -name "${machine_fqdn}"
+        keytool -importkeystore \
+            -srcstoretype PKCS12 \
+            -srckeystore "${target_dir_machine}/${machine_fqdn}.p12" \
+            -srcalias "${machine_fqdn}" \
+            -srcstorepass 'changeit' \
+            -deststoretype JKS \
+            -destkeystore "${target_dir_machine}/${machine_fqdn}.jks" \
+            -deststorepass 'changeit' \
+            -destkeypass 'changeit'
+    fi
 
     # Generate cert+key file in the format expected by HAProxy
+    mkdir -p "${target_dir_machine}/haproxy"
     if [[ -f "${target_dir_machine}/haproxy/${machine_fqdn}.pem" ]]; then
         echo "[Machine HAProxy Cert Already Exists]: ${machine_fqdn}"
     else
@@ -140,8 +158,10 @@ shift
 TARGET_DIR="$1"
 shift
 
-# Create certs
+# Create root CA
 create_root_cert "${TARGET_DIR}/ca-private"
+
+# Create proxy certs
 create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "ldap-ui.proxy.${ENV_DOMAIN}"
 create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "keycloak.proxy.${ENV_DOMAIN}"
 create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "crowd.proxy.${ENV_DOMAIN}"
@@ -149,10 +169,13 @@ create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "bitbucket.
 create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "jira.proxy.${ENV_DOMAIN}"
 create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/proxy" "artifactory.proxy.${ENV_DOMAIN}"
 
-# Share the CA cert with all machines
+# Create cas-proxy certs
+create_machine_cert "${TARGET_DIR}/ca-private" "${TARGET_DIR}/cas-proxy" "cas-proxy.${ENV_DOMAIN}"
+
+# Share the public certs with all machines
 cp "${TARGET_DIR}/ca-private/root-ca.crt" "${TARGET_DIR}/ca-shared/root-ca.crt"
 
-# Generate a Java truststore that includes our the CA
+# Generate a Java truststore for the root CA
 cp /etc/ssl/certs/java/cacerts "${TARGET_DIR}/ca-shared/cacerts.jks"
 keytool -import -noprompt \
   -file "${TARGET_DIR}/ca-shared/root-ca.crt" \

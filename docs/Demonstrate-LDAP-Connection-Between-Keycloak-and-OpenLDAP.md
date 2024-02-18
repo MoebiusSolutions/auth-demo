@@ -17,6 +17,6 @@ Ensure that the `SSO-Realm` is active (top of left panel)
 
 * To change: Hover over the left panel header until `SSO-Realm` is selectable
 
-Click **Users** in the left panel, and then click **View all users**
+Click **Users** in the left panel, and then serach for `pswanson`
 
 Confirm that `Peter Swanson` / `pswanson` is listed

@@ -42,6 +42,8 @@ Demonstration Procedures
 
 * [Demonstrating Artifactory Authentication through SAML to Keycloak](docs/Demonstrating-Artifactory-Authentication-through-SAML-to-Keycloak.md)
 
+* [Demonstrating CAS Authentication from Apache to Keycloak](docs/Demonstrating-CAS-Authentication-from-Apache-to-Keycloak.md)
+
 Minor Task Procedures (used by the above procedures)
 
 * Azure
@@ -56,6 +58,7 @@ Minor Task Procedures (used by the above procedures)
     * [Define an "SSO" Realm in Keycloak](docs/Keycloak_Define-an-SSO-Realm-in-Keycloak.md)
     * [Add LDAP Connecton to Keycloak](docs/Keycloak_Add-LDAP-Connecton-to-Keycloak.md)
     * [Define an Artifactory SAML Service Provider in Keycloak](docs/Keycloak_Define-an-Artifactory-SAML-Service-Provider-in-Keycloak.md)
+    * [Define a CAS IDP (Client) in Keycloak](docs/Keycloak_Define-a-CAS-IDP-Client.md)
 * Crowd
     * [Initialize Crowd](docs/Crowd_Initialize-Crowd.md)
     * [Add LDAP Connector to Crowd](docs/Crowd_Add-LDAP-Connector-to-Crowd.md)
@@ -94,14 +97,19 @@ Proxied (HTTPS) service URLs:
 * Bitbucket: [https://bitbucket.proxy.auth-demo.docker/](https://bitbucket.proxy.auth-demo.docker/)
 * Jira: [https://jira.proxy.auth-demo.docker/](https://jira.proxy.auth-demo.docker/)
 * Artifactory: [https://artifactory.proxy.auth-demo.docker/](https://artifactory.proxy.auth-demo.docker/)
+* CAS Demo Pages
+    * Example Public Content: [https://cas-proxy.auth-demo.docker/index.php](https://cas-proxy.auth-demo.docker/index.php)
+    * Example Private Content: [https://cas-proxy.auth-demo.docker/secured-by-cas/index.php](https://cas-proxy.auth-demo.docker/secured-by-cas/index.php)
 
 Direct/internal service URLs:
 
 * OpenLDAP UI [https://ldap-ui.auth-demo.docker:443/](https://ldap-ui.auth-demo.docker:443/)
-* Keycloak [http://keycloak.auth-demo.docker:8080/](http://keycloak.auth-demo.docker:8080/)
+* Keycloak [http://keycloak.auth-demo.docker:8080/auth/](http://keycloak.auth-demo.docker:8080/auth/)
+    * NOTE: We added a redirect rule from `/` to `/auth/` to the proxy,
+      but this does not work for direct requests to Keycloak.
+      This is an aparent bug in Keycloak.
 * Crowd: [http://crowd.auth-demo.docker:8095/](http://crowd.auth-demo.docker:8095/)
 * Bitbucket: [http://bitbucket.auth-demo.docker:7990/](http://bitbucket.auth-demo.docker:7990/)
 * Bitbucket SSH: [http://bitbucket.auth-demo.docker:7999/](http://bitbucket.auth-demo.docker:7999/)
 * Jira: [https://jira.auth-demo.docker:8080/](https://jira.auth-demo.docker:8080/)
 * Artifactory: [https://artifactory.auth-demo.docker:8082/](https://artifactory.auth-demo.docker:8082/)
-

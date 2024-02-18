@@ -8,26 +8,29 @@ Ensure that the `SSO-Realm` is active (top of left panel)
 
 * To change: Hover over the left panel header until `SSO-Realm` is selectable
 
-Click **User Federation** in the left panel, and then select **ldap**
+Click **User Federation** in the left panel, and then select **Add Ldap providers**
 
-Enter the following options on **Add use federation provider**, and then click **Save**:
+Enter the following options on **Add LDAP provider**, and then click **Save**:
 
-* Console Display Name: `Demo LDAP`
-* Import Users: `ON`
-* Edit Mode: `READ_ONLY`
-* Vendor: `Other`
-* Username LDAP attribute: `uid` (NOTE: the OpenLDAP UI has this as an alias to `User Name`)
-* RDN LDAP attribute: `uid`
-* UUID LDAP attribute: `uidNumber`
-    * NOTE: This is not a UUID, but I believe it is unique enough in our OpenLDAP config
-      to be unique across all users
-* User Object Classes: `inetOrgPerson, organizationalPerson`
-* Connection URL: `ldap://ldap:389/`
-    * Click **Test connection** button
-* Users DN: `dc=example,dc=com`
-* Bind Type: `simple`
-* Bind DN: `cn=ldap-bind,dc=example,dc=com`
-* Bind Credential: (see `authdemo-show-secrets.sh` output for `LDAP Bind`)
-    * Click **Test authentication** button
+* General options
+    * UI display name: `Demo LDAP`
+    * Vendor: `Other`
+* Connection and authentication settings
+    * Connection URL: `ldap://ldap:389/`
+        * Click **Test connection** button
 
-Click **Synchronize all users** at the bottom of the page
+    * Bind Type: `simple`
+    * Bind DN: `cn=ldap-bind,dc=example,dc=com`
+    * Bind Credential: (see `authdemo-show-secrets.sh` output for `LDAP Bind`)
+        * Click **Test authentication** button
+* LDAP searching and updating
+    * Edit Mode: `READ_ONLY`
+    * Users DN: `dc=example,dc=com`
+    * Username LDAP attribute: `uid`
+    * RDN LDAP attribute: `uid`
+    * UUID LDAP attribute: `uidNumber`
+        * NOTE: This is not a UUID, but I believe it is unique enough in our OpenLDAP config
+        to be unique across all users
+    * User Object Classes: `inetOrgPerson, organizationalPerson`
+
+Open the newly created `Demo LDAP` item, click **Action** (upper right), and then click **Sync all users**
