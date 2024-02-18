@@ -116,7 +116,7 @@ Direct/internal service URLs:
 
 ## Release Notes
 
-0.2 (IN-PROGRESS)
+0.2 (2024-02-18)
 
 * Upgraded Keycloak from 16.x to 23.x
     * Added `key-cloak` init container
