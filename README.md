@@ -116,7 +116,7 @@ Direct/internal service URLs:
 
 ## Release Notes
 
-0.2 (2024-02-18)
+auth-demo-0.2 (2024-02-18)
 
 * Upgraded Keycloak from 16.x to 23.x
     * Added `key-cloak` init container
@@ -127,4 +127,4 @@ Direct/internal service URLs:
 * Added a volume to store Keycloak data (so Keycloak configs survive redeploys)
 * Added creation of a JKS keystore for every machine cert
 
-0.1 (Before Versioning)
+auth-demo-0.1 (Before Versioning)
