@@ -113,3 +113,18 @@ Direct/internal service URLs:
 * Bitbucket SSH: [http://bitbucket.auth-demo.docker:7999/](http://bitbucket.auth-demo.docker:7999/)
 * Jira: [https://jira.auth-demo.docker:8080/](https://jira.auth-demo.docker:8080/)
 * Artifactory: [https://artifactory.auth-demo.docker:8082/](https://artifactory.auth-demo.docker:8082/)
+
+## Release Notes
+
+0.2 (IN-PROGRESS)
+
+* Upgraded Keycloak from 16.x to 23.x
+    * Added `key-cloak` init container
+    * Updated most procedures to use the new interface
+* Added demonstration of CAS authentication between Apache2 and Keycloak
+    * Added [Demonstrating CAS Authentication from Apache to Keycloak](docs/Demonstrating-CAS-Authentication-from-Apache-to-Keycloak.md)
+    * Added `cas-proxy` (Apache2) container
+* Added a volume to store Keycloak data (so Keycloak configs survive redeploys)
+* Added creation of a JKS keystore for every machine cert
+
+0.1 (Before Versioning)
