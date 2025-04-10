@@ -18,8 +18,8 @@ On **SAML SSO Settings**, enter the following, and then click **Save**:
         * Click **Certificate** for the **RS256** key
 * `[ ]` Use Encrypted Assertion
 * `[ ]` Auto-Associate Groups
-* Group Attribute: ``
-* Email Attribute: ``
+* Group Attribute: (blank)
+* Email Attribute: (blank)
 * `[✓]` Auto Create Artifactory Users
 * `[✓]` Allow Created Users Access to Profile Page
 * `[ ]` Auto Redirect Login Link to SAML Login

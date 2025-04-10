@@ -20,9 +20,14 @@ Enter the following options on **Add client**, and then click **Save**:
 After the page refreshes, update the following settings for the newly defined client,
 and then click **Save**:
 
-* Sign Assertions: `ON`
-    * NOTE: Without this, Artifactory kicks out error: `... request validation failed: org.keycloak.common.VerificationException: SigAlg was null ... error=invalid_signature`
-* Client Signature Required: `OFF`
-    * NOTE: This is per the Artifactory documentation
-* Valid Redirect URIs: `https://artifactory.proxy.auth-demo.docker/*`
+* **Settings** tab
+    * **Access settings** tab
+        * Valid Redirect URIs: `https://artifactory.proxy.auth-demo.docker/*`
+    * **Signature and Encryption** section
+        * Sign Assertions: `ON`
+            * NOTE: Without this, Artifactory kicks out error: `... request validation failed: org.keycloak.common.VerificationException: SigAlg was null ... error=invalid_signature`
+* **Keys** tab
+    * **Signing keys config** section
+        * Client signature required: `OFF`
+            * NOTE: This is per the Artifactory documentation
 
