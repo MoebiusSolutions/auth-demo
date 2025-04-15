@@ -118,7 +118,8 @@ Direct/internal service URLs:
 
 auth-demo-0.3 (IN-PROGRESS)
 
-* ...
+* Narrowed docker network range to `/24` (from `/16`).
+  This corrects the suggestion in `.env.template` that the first three octets are independent across networks.
 
 auth-demo-0.2 (2024-02-18)
 

@@ -302,5 +302,5 @@ networks:
       config:
         # NOTE: We set static IPs because Crowd depends upon an IP whitelist.
         #       Otherwise we would have to re-set the whitelist on every restart.
-        - subnet: "${ENV_IP_PREFIX}.0/16"
+        - subnet: "${ENV_IP_PREFIX}.0/24"
           gateway: "${ENV_IP_PREFIX}.1"
