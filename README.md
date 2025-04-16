@@ -81,6 +81,7 @@ Other Docs
 * [Resolving "Found an Attribute element with duplicated Name" SAML Error in Bitbucket](docs/Resolving-Found-an-Attribute-element-with-duplicated-Name-SAML-Error-in-Bitbucket.md)
 * [The OpenLDAP Admin User is Not Listed in LDAP Queries](docs/The-OpenLDAP-Admin-User-is-Not-Listed.md)
 * [Fixing SAML SSO Logout](docs/Fixing-SAML-SSO-Logout.md)
+* [Artifactory - "SAML Service Provider" Confusion](docs/Artifactory_SAML-Service-Provider-Confusion.md)
 
 ## Service Links
 
