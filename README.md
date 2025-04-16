@@ -122,6 +122,8 @@ auth-demo-0.3 (IN-PROGRESS)
 * Upgraded Artifactory from `7.49.6` to `7.104.15`
     * Added `artifactory-postgres` container, as Artifactory now requires an external database
     * Added `artifactory-init` container to configured the Artifactory's connection to the database
+    * Added [Artifactory - "SAML Service Provider" Confusion](docs/Artifactory_SAML-Service-Provider-Confusion.md)
+      to document the new SAML configuration behavior
 * Narrowed docker network range to `/24` (from `/16`).
   This corrects the suggestion in `.env.template` that the first three octets are independent across networks.
 
