@@ -108,6 +108,7 @@ write_value "ldap-bind" /secrets/ldap-bind/bind_username
 generate_password /secrets/ldap-bind/bind_password
 write_value "admin" /secrets/artifactory/admin_username
 generate_complex_password /secrets/artifactory/admin_password
+generate_password /secrets/artifactory-postgres/admin_password
 
 # Load variables used in template files
 export LDAP_ADMIN_PASSWORD="$(read_value "/secrets/ldap/admin_password")"

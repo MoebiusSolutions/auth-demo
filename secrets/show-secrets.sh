@@ -43,6 +43,11 @@ echo "user: $(cat /secrets/jira/admin_username)"
 echo "pass: $(cat /secrets/jira/admin_password)"
 echo ""
 
+echo "[ Artifactory Postgres Admin ]"
+echo "user: artifactory"
+echo "pass: $(cat /secrets/artifactory-postgres/admin_password)"
+echo ""
+
 echo "[ Artifactory Admin ]"
 echo "user: $(cat /secrets/artifactory/admin_username)"
 echo "pass: $(cat /secrets/artifactory/admin_password)"
