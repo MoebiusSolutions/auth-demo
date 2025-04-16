@@ -325,20 +325,11 @@ services:
     hostname: "artifactory.${ENV_DOMAIN}"
     # The "Pro" version is required for SAML/OAuth support
     image: releases-docker.jfrog.io/jfrog/artifactory-pro:7.104.15
-
-    # TODO: Remove if not needed
-    environment:
-      ENV_DOMAIN: "$ENV_DOMAIN"
-
     security_opt:
       # Disable SElinux for volume mounts (since we're using a host mount)
       - "label=disable"
     volumes:
       - "artifactory-data:/var/opt/jfrog/artifactory:rw"
-
-      # TODO: Remove debug
-      - "secrets-artifactory-postgres:/secrets/artifactory-postgres:ro"
-
     networks:
       network:
         ipv4_address: "${ENV_IP_PREFIX}.10"
