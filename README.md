@@ -117,7 +117,7 @@ Direct/internal service URLs:
 
 ## Release Notes
 
-auth-demo-0.3 (IN-PROGRESS)
+auth-demo-0.3 (2025-04-16)
 
 * Upgraded Artifactory from `7.49.6` to `7.104.15`
     * Added `artifactory-postgres` container, as Artifactory now requires an external database
