@@ -117,6 +117,10 @@ Direct/internal service URLs:
 
 ## Release Notes
 
+auth-demo-0.3 (IN-PROGRESS)
+
+* ...
+
 auth-demo-0.3 (2025-04-16)
 
 * Upgraded Artifactory from `7.49.6` to `7.104.15`
