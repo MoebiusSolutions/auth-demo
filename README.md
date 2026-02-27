@@ -44,6 +44,8 @@ Demonstration Procedures
 
 * [Demonstrating CAS Authentication from Apache to Keycloak](docs/Demonstrating-CAS-Authentication-from-Apache-to-Keycloak.md)
 
+* [Demonstrating Keycloak Fine-Grained Admin Permissions (FGAPv2) to Grant Group Management](docs/Demonstrating-Keycloak-Fine-Grained-Admin-Permissions-FGAPv2-to-Grant-Group-Management.md)
+
 Minor Task Procedures (used by the above procedures)
 
 * Azure
